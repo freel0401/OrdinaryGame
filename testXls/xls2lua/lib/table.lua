@@ -801,3 +801,14 @@ function table.num(t)
 	for k in next, t do n = n+1 end
 	return n
 end
+
+function table.isIntTable(tb)
+	local keys = table.keys(tb)
+	if #keys~=#tb then return false end
+	for k, v in next, tb do
+		if type(k)~='number' then
+			return false
+		end
+	end
+	return true
+end

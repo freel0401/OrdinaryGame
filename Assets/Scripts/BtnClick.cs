@@ -20,7 +20,7 @@ public Entity e;
 		Global.TestFunc();
         var textFile = Resources.Load<TextAsset>("cfg_attr");
         var data = JsonUtility.FromJson<TestData>(textFile.text);
-		Debug.Log(data.appHurt);
+		Debug.Log(data.att);
 		// var textCom = GameObject.Find("Canvas/TextName").GetComponent<Text>();
 		// float num = Random.value;
 		// textCom.text = "测试名字" + num.ToString();

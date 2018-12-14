@@ -616,8 +616,13 @@ local function serialize(o, file, deep, forks, fork)
 	elseif type(o) == "boolean" then
 		file:write(o and 'true' or 'false')
 	elseif type(o) == "table" then
-		-- file:write("{\n")
-		file:write("{")
+		local isIntTable = table.isIntTable(o)
+		if isIntTable then
+			file:write("[\n")
+		else
+			file:write("{\n")
+		end
+		-- file:write("{")
 		local tn,i={},1
 		for k,v in pairs(o) do
 			tn[i] = k
@@ -633,7 +638,7 @@ local function serialize(o, file, deep, forks, fork)
 		for j=1,#tn do
 			local v,k = o[tn[j]],tn[j]
 			if type(k) == 'number' then -- 数字
-				file:write(" [",k,"] : ")
+				-- file:write(" [",k,"] : ")
 			elseif type(k) == 'string' and string.find(k,'^[a-zA-Z_][a-zA-Z0-9_]*$') then -- 正常变量
 				file:write( ('%q'):format(k), " : ")
 			else -- 其他字符
@@ -647,10 +652,10 @@ local function serialize(o, file, deep, forks, fork)
 			serialize(v, file, deep+1, deep <= forks[0] and forks or forks0,
 				fork or deep==forks[0]+1 and forks[k])
 			if j==#tn then
-				-- file:write("\n")
+				file:write("\n")
 			else
-				-- file:write(",\n")
-				file:write(",")
+				file:write(",\n")
+				-- file:write(",")
 			end
 		end
 --		for k,v in pairs(o) do
@@ -663,7 +668,11 @@ local function serialize(o, file, deep, forks, fork)
 		-- else
 		-- 	file:write("}\n")
 		-- end
+		if isIntTable then
+			file:write("]")
+		else
 			file:write("}")
+		end
 	else
 		error("cannot serialize a " .. type(o))
 	end
@@ -929,6 +938,7 @@ local function convert(excel, sheets, cliPath, svrPath, name )
 			-- out:write("sheetname="..(clisheetnames[i] or '').."\n")
 			-- out:write('_G.'..cliname..' = { \n')
 			-- out:write('{\n')
+			dump(clidata[i])
 			serialize(clidata[i], out, 1, forks[clifile[i]])
 			-- out:write(", '"..pks[i].."' }")
 			out:close()
