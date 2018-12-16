@@ -21,6 +21,10 @@ public Entity e;
         var textFile = Resources.Load<TextAsset>("cfg_attr");
         var data = JsonUtility.FromJson<TestData>(textFile.text);
 		Debug.Log(data.att);
+
+		// TestData td = new TestData();
+		// string tdsting = JsonUtility.ToJson(td.att);
+		// Debug.Log(tdsting);
 		// var textCom = GameObject.Find("Canvas/TextName").GetComponent<Text>();
 		// float num = Random.value;
 		// textCom.text = "测试名字" + num.ToString();

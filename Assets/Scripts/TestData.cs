@@ -22,5 +22,8 @@ public class TestData {
 	public AttrTemp hit;
 	public AttrTemp maxHp;
 	public AttrTemp speed;
-
+	public TestData()
+	{
+		// att.index = 100;
+	}
 }

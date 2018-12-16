@@ -2,23 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public partial class Entity : MonoBehaviour
 {
     string sex;
     int age;
-    string entityEame;
+    string entityName;
+    protected AttrSys attrs = new AttrSys();
 
-    public Entity(int id)
+    protected UIFunc UIMgr;
+    public string EntityName
+    {
+        get
+        {
+            return entityName;
+        }
+
+        set
+        {
+            entityName = value;
+        }
+    }
+
+    protected void SetAttrs(string kind, int value)
+    {
+        int difVal = this.attrs.SetAttr(kind, value);
+        // Debug.Log("-------Entity---SetAttrs" + kind + " | " + difVal);
+        // attrs = value;
+    }
+
+    public Entity()
     {
 
     }
     // Use this for initialization
-    void Start()
+
+    void Awake()
     {
-        Debug.Log("名字" + this.entityEame);
-        Debug.Log("性别" + this.sex);
-        Debug.Log("年龄" + this.age);
-        // this.transform
+        UIMgr = GameObject.Find("UI").GetComponent<UIFunc>();
+        // UIMgr.AddMessage();
     }
 
     // Update is called once per frame
@@ -27,10 +48,9 @@ public class Entity : MonoBehaviour
 
     }
 
-    public void Add(string name, int age, string sex)
+    protected void AddMessage(string msg)
     {
-        this.entityEame = name;
-        this.age = age;
-        this.sex = sex;
+        UIMgr.AddMessage(msg);
     }
+
 }

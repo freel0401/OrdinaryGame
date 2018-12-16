@@ -3,35 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIFunc : MonoBehaviour {
+public class UIFunc : MonoBehaviour
+{
 
-	// Use this for initialization
-	public Text MonInfo;
-	public Text PlayerInfo;
-	public Text Messages;
-	void Start () {
-		// MonInfo = GameObject.Find("Canvas/UIMonsterInfo").GetComponent<Text>();
-		// PlayerInfo = GameObject.Find("Canvas/UIPlayerInfo").GetComponent<Text>();
-		// Messages = GameObject.Find("Canvas/UIMessages").GetComponent<Text>();
-	}
+    // Use this for initialization
+    [SerializeField]
+    Text MonInfo;
 
-	// Update is called once per frame
-	void Update () {
+    [SerializeField]
+    Text PlayerInfo;
 
-	}
-}
+    [SerializeField]
+    GameObject PopUp;
+    PopupMessageCenter popMsg;
+    void Awake()
+    {
+        popMsg = PopUp.GetComponent<PopupMessageCenter>();
+    }
 
-public class UI{
-	static public void SetMonInfo( string name )
-	{
+    // Update is called once per frame
 
-	}
-	static public void SetPlayerInfo( string name )
-	{
+    public void AddMessage(string msg)
+    {
+        popMsg.AddMessageInfo(msg, Color.red);
+    }
 
-	}
-	static public void AddMessage( string msg )
-	{
-
-	}
+    public void SetPlayerInfo(MyRole player)
+    {
+        PlayerInfo.text = player.EntityName;
+    }
 }
