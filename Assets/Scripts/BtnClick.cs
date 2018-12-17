@@ -18,9 +18,13 @@ public Entity e;
     public void showText(){
 		Debug.Log("FFFFFFF");
 		Global.TestFunc();
+
+		TestData td = new TestData();
+		// string tdstring = JsonUtility.ToJson(td.attrs);
+		// Debug.Log(tdstring);
         var textFile = Resources.Load<TextAsset>("cfg_attr");
         var data = JsonUtility.FromJson<TestData>(textFile.text);
-		Debug.Log(data.att);
+		Debug.Log(data.attrs);
 
 		// TestData td = new TestData();
 		// string tdsting = JsonUtility.ToJson(td.att);
