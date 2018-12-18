@@ -12,4 +12,6 @@ public class Global {
 	{
 		Debug.Log("lsllslsl");
 	}
+
+	static public string[] AttrSort = { "att", "def", "maxHp", "hp", "speed" };
 }

@@ -24,7 +24,7 @@ public Entity e;
 		// Debug.Log(tdstring);
         var textFile = Resources.Load<TextAsset>("cfg_attr");
         var data = JsonUtility.FromJson<TestData>(textFile.text);
-		Debug.Log(data.attrs);
+		Debug.Log(data.att);
 
 		// TestData td = new TestData();
 		// string tdsting = JsonUtility.ToJson(td.att);

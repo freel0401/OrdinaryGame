@@ -7,7 +7,7 @@ public partial class Entity : MonoBehaviour
     string sex;
     int age;
     string entityName;
-    protected AttrSys attrs = new AttrSys();
+    protected AttrSys attrs;
 
     protected UIFunc UIMgr;
     public string EntityName
@@ -25,7 +25,7 @@ public partial class Entity : MonoBehaviour
 
     protected void SetAttrs(string kind, int value)
     {
-        int difVal = this.attrs.SetAttr(kind, value);
+        // int difVal = this.attrs.SetAttr(kind, value);
         // Debug.Log("-------Entity---SetAttrs" + kind + " | " + difVal);
         // attrs = value;
     }

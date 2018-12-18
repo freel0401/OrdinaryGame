@@ -2,55 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct AttrTemplate
+enum ATTRS
 {
-    public int att;
-    public int def;
-    public int hp;
-    public int maxHp;
-    public int speed;
+    ATT, DEF, HP, MAXHP, SPEED
 }
-public class AttrSys {
-    private AttrTemplate attrs;
 
-    public AttrSys()
+public class AttrSys
+{
+    // 属性
+    private int[] attrs = { 10, 0, 100, 100, 10 };
+
+    static public string[] ATTRSTING = { "攻击力", "防御力", "生命", "最大生命", "速度" };
+    static public string[] ATTRNAME = { "att", "def", "hp", "maxHp", "speed" };
+
+    // 属性查询
+    public int this[string name]
     {
-        // attrs.att
+        get
+        {
+            int index = getKeyIndex(name);
+            if (index >= 0 && index <= attrs.Length - 1)
+                return attrs[index];
+            return 0;
+        }
+        set
+        {
+            Debug.Log("set Attr value Use function SetAttr");
+        }
+    }
+    public int this[int index]
+    {
+        get
+        {
+            if (index >= 0 && index <= attrs.Length - 1)
+                return attrs[index];
+            return 0;
+        }
+        set { Debug.Log("set Attr value Use function SetAttr"); }
     }
 
-    public int SetAttr( string kind, int value )
+    int getKeyIndex(string name)
+    {
+        for (int i = 0; i < ATTRNAME.Length; i++)
+        {
+            if (ATTRNAME[i] == name)
+                return i;
+        }
+        return -1;
+    }
+
+    // 创建和设置
+    public int SetAttr(string kind, int value)
     {
         int diffValue = 0;
-        switch (kind)
+        // TODO 检查最大值最小值, 检查类型
+        int index = getKeyIndex(kind);
+        if (index >= 0 && index <= attrs.Length - 1)
         {
-            case "att":
-                diffValue = value - attrs.att;
-                attrs.att = value;
-                break;
-            case "def":
-                diffValue = value - attrs.def;
-                attrs.def = value;
-                break;
-            case "hp":
-                diffValue = value - attrs.hp;
-                attrs.hp = value;
-                break;
-            case "maxHp":
-                diffValue = value - attrs.maxHp;
-                attrs.maxHp = value;
-                break;
-            case "speed":
-                diffValue = value - attrs.speed;
-                attrs.speed = value;
-                break;
-            default:
-            Debug.Log("fuck" + kind);
-            break;
+            attrs[index] = value;
         }
         return diffValue;
     }
 
-    public string FormatAttrs( ref AttrTemplate data )
+    public string FormatAttrs(ref int[] attrs)
     {
         string strs = "";
         return strs;
