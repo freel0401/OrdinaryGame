@@ -6,12 +6,24 @@ public class TestGlobal : MonoBehaviour{
 	void onStart()
 	{}
 }
+public abstract class Singleton<T> : MonoBehaviour
+    where T : MonoBehaviour
+{
+    private static T _instance;
+
+    public static T GetInstance()
+    {
+        if (_instance == null)
+        {
+            Debug.Log("Create " + typeof(T).ToString() + " singleton...");
+            _instance = GameObject.FindObjectOfType<T>();
+            if (_instance == null)
+                Debug.LogError("Class of " + typeof(T).ToString() + " not found!");
+        }
+        return _instance;
+    }
+}
+
 public class Global {
 
-	static public void TestFunc()
-	{
-		Debug.Log("lsllslsl");
-	}
-
-	static public string[] AttrSort = { "att", "def", "maxHp", "hp", "speed" };
 }

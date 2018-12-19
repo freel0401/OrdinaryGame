@@ -29,22 +29,6 @@ public class PopupMessageCenter : MonoBehaviour
         Init();
     }
     // Update is called once per frame
-    void Update()
-    {
-        //测试代码
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            AddMessageInfo("哈哈哈哈哈哈哈哈哈哈哈", Color.red);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            AddMessageInfo("嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿", Color.grey);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            AddMessageInfo("嘻嘻嘻嘻嘻嘻嘻嘻", Color.green);
-        }
-    }
     public void Init()
     {
         //初始化消息弹窗设置

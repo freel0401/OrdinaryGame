@@ -7,9 +7,8 @@ public partial class Entity : MonoBehaviour
     string sex;
     int age;
     string entityName;
-    protected AttrSys attrs;
+    protected AttrSys attrs = new AttrSys();
 
-    protected UIFunc UIMgr;
     public string EntityName
     {
         get
@@ -25,32 +24,20 @@ public partial class Entity : MonoBehaviour
 
     protected void SetAttrs(string kind, int value)
     {
-        // int difVal = this.attrs.SetAttr(kind, value);
-        // Debug.Log("-------Entity---SetAttrs" + kind + " | " + difVal);
+        int difVal = this.attrs.SetAttr(kind, value);
+        if (this is MyRole)
+        {
+            string dif = difVal>0?"增加":"减少";
+            AddMessage("属性"+ this.attrs.GetAttrName(kind)+dif+value.ToString());
+        }
+
+        Debug.Log("-------Entity---SetAttrs" + kind + " | " + difVal);
         // attrs = value;
-    }
-
-    public Entity()
-    {
-
-    }
-    // Use this for initialization
-
-    void Awake()
-    {
-        UIMgr = GameObject.Find("UI").GetComponent<UIFunc>();
-        // UIMgr.AddMessage();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     protected void AddMessage(string msg)
     {
-        UIMgr.AddMessage(msg);
+        UIFunc.GetInstance().AddMessage(msg);
     }
 
 }

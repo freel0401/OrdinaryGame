@@ -23,15 +23,10 @@ public class MyRole : Entity
         SetMyInfo();
 
     }
-
     // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 	void SetMyInfo()
 	{
-        UIMgr.SetPlayerInfo(this);
+        // UIMgr.SetPlayerInfo(this);
+        UIFunc.GetInstance().SetPlayerInfo(this);
 	}
 }

@@ -16,9 +16,6 @@ public class BtnClick : MonoBehaviour {
 	}
 public Entity e;
     public void showText(){
-		Debug.Log("FFFFFFF");
-		Global.TestFunc();
-
 		TestData td = new TestData();
 		// string tdstring = JsonUtility.ToJson(td.attrs);
 		// Debug.Log(tdstring);

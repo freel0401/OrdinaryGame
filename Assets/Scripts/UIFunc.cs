@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIFunc : MonoBehaviour
+public class UIFunc : Singleton<UIFunc>
 {
 
     // Use this for initialization
@@ -16,10 +16,12 @@ public class UIFunc : MonoBehaviour
     [SerializeField]
     GameObject PopUp;
     PopupMessageCenter popMsg;
+
     void Awake()
     {
         popMsg = PopUp.GetComponent<PopupMessageCenter>();
     }
+
 
     // Update is called once per frame
 
@@ -28,8 +30,8 @@ public class UIFunc : MonoBehaviour
         popMsg.AddMessageInfo(msg, Color.red);
     }
 
-    public void SetPlayerInfo(MyRole player)
+    public void SetPlayerInfo(Entity entity)
     {
-        PlayerInfo.text = player.EntityName;
+        PlayerInfo.text = entity.EntityName;
     }
 }

@@ -59,6 +59,7 @@ public class AttrSys
         int index = getKeyIndex(kind);
         if (index >= 0 && index <= attrs.Length - 1)
         {
+            diffValue = value - attrs[index];
             attrs[index] = value;
         }
         return diffValue;
@@ -68,5 +69,10 @@ public class AttrSys
     {
         string strs = "";
         return strs;
+    }
+
+    public string GetAttrName(string name)
+    {
+        return ATTRSTING[getKeyIndex(name)];
     }
 }
