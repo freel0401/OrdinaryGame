@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Text;
 public class TestGlobal : MonoBehaviour{
 	void onStart()
 	{}
@@ -25,5 +25,12 @@ public abstract class Singleton<T> : MonoBehaviour
 }
 
 public class Global {
-
+	static public StringBuilder stringBuilder =new StringBuilder();
+	static public StringBuilder GetStringBuilder()
+	{
+		var sb = stringBuilder;
+        if (sb.Length>0)
+            sb.Remove(0, sb.Length);
+        return sb;
+	}
 }

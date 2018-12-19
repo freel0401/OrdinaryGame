@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public partial class Entity : MonoBehaviour
+using System.Text;
+public partial class Entity
 {
-    string sex;
-    int age;
     string entityName;
     protected AttrSys attrs = new AttrSys();
 
@@ -22,9 +20,9 @@ public partial class Entity : MonoBehaviour
         }
     }
 
-    protected void SetAttrs(string kind, int value)
+    protected void SetAttrs(string kind, int value, bool isAdd)
     {
-        int difVal = this.attrs.SetAttr(kind, value);
+        int difVal = this.attrs.SetAttr(kind, value, isAdd);
         if (this is MyRole)
         {
             string dif = difVal>0?"增加":"减少";
@@ -38,6 +36,24 @@ public partial class Entity : MonoBehaviour
     protected void AddMessage(string msg)
     {
         UIFunc.GetInstance().AddMessage(msg);
+    }
+
+    protected void setInfo()
+	{
+        UIFunc.GetInstance().setInfo(this);
+	}
+
+    public string GetEntityShowInfo()
+    {
+        // string infos;
+        // sb.Delete( 0, sb.Length() );
+        string attrInfo = attrs.FormatAttrs();
+        StringBuilder sb = Global.GetStringBuilder();
+        sb.Append(entityName);
+        sb.Append("\n");
+        sb.Append(attrInfo);
+        // sb.Append(this.attr)
+        return sb.ToString();
     }
 
 }

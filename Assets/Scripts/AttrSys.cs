@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 enum ATTRS
 {
@@ -52,23 +53,34 @@ public class AttrSys
     }
 
     // 创建和设置
-    public int SetAttr(string kind, int value)
+    public int SetAttr(string kind, int value, bool isAdd)
     {
         int diffValue = 0;
         // TODO 检查最大值最小值, 检查类型
         int index = getKeyIndex(kind);
         if (index >= 0 && index <= attrs.Length - 1)
         {
-            diffValue = value - attrs[index];
-            attrs[index] = value;
+            diffValue = value;
+            if (isAdd)
+                attrs[index] += value;
+            else
+                attrs[index] = value;
+            diffValue -= attrs[index];
         }
         return diffValue;
     }
 
-    public string FormatAttrs(ref int[] attrs)
+    public string FormatAttrs()
     {
-        string strs = "";
-        return strs;
+        StringBuilder sb = Global.GetStringBuilder();
+        for (int i = 0; i < ATTRSTING.Length; i++)
+        {
+             sb.Append(ATTRSTING[i]);
+             sb.Append(":");
+             sb.Append(attrs[i].ToString());
+             sb.Append("\n");
+        }
+        return sb.ToString();
     }
 
     public string GetAttrName(string name)

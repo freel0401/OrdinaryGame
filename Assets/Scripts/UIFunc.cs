@@ -30,8 +30,14 @@ public class UIFunc : Singleton<UIFunc>
         popMsg.AddMessageInfo(msg, Color.red);
     }
 
-    public void SetPlayerInfo(Entity entity)
+    public void setInfo(Entity entity)
     {
-        PlayerInfo.text = entity.EntityName;
+        if (entity is MyRole)
+            PlayerInfo.text = entity.GetEntityShowInfo();
+        else
+        {
+            MonInfo.text = entity.GetEntityShowInfo();
+        }
     }
+
 }
