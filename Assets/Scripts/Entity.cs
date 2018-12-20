@@ -45,8 +45,6 @@ public partial class Entity
 
     public string GetEntityShowInfo()
     {
-        // string infos;
-        // sb.Delete( 0, sb.Length() );
         string attrInfo = attrs.FormatAttrs();
         StringBuilder sb = Global.GetStringBuilder();
         sb.Append(entityName);

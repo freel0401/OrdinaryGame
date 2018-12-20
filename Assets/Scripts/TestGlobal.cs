@@ -33,4 +33,14 @@ public class Global {
             sb.Remove(0, sb.Length);
         return sb;
 	}
+
+    static public string FormatStrings(params string[] strTb)
+    {
+        StringBuilder sb = GetStringBuilder();
+        foreach (string str in strTb)
+        {
+            sb.Append(str);
+        }
+        return sb.ToString();
+    }
 }
