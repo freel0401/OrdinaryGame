@@ -9,28 +9,34 @@ public partial class Entity
 
     public string EntityName
     {
-        get
-        {
-            return entityName;
-        }
-
-        set
-        {
-            entityName = value;
-        }
+        get { return entityName; }
+        set { entityName = value; }
     }
 
-    protected void SetAttrs(string kind, int value, bool isAdd)
+    public bool IsMe
     {
-        int difVal = this.attrs.SetAttr(kind, value, isAdd);
+        get { return isMe;  }
+        set { isMe = value; }
+    }
+
+    bool isMe = false;
+
+    protected void SetAttrs(string name, int value, bool isAdd)
+    {
+        int difVal = this.attrs.SetAttr(name, value, isAdd);
         if (this is MyRole)
         {
             string dif = difVal>0?"增加":"减少";
-            AddMessage("属性"+ this.attrs.GetAttrName(kind)+dif+value.ToString());
+            AddMessage("属性"+ this.attrs.GetAttrName(name)+dif+value.ToString());
         }
 
-        Debug.Log("-------Entity---SetAttrs" + kind + " | " + difVal);
+        Debug.Log("-------Entity---SetAttrs" + name + " | " + difVal);
         // attrs = value;
+    }
+
+    public int GetAttr(string name)
+    {
+        return attrs[name];
     }
 
     protected void AddMessage(string msg)
