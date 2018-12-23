@@ -25,6 +25,7 @@ public abstract class Singleton<T> : MonoBehaviour
 }
 
 public class Global {
+    static int guid = 0;
 	static public StringBuilder stringBuilder =new StringBuilder();
 	static public StringBuilder GetStringBuilder()
 	{
@@ -42,5 +43,10 @@ public class Global {
             sb.Append(str);
         }
         return sb.ToString();
+    }
+
+    static public int GetGuid()
+    {
+        return guid++;
     }
 }

@@ -20,10 +20,11 @@ public Entity e;
 		// string tdstring = JsonUtility.ToJson(td.attrs);
 		// Debug.Log(tdstring);
 		// MyRole me = new MyRole();
-		// Monster mon = new Monster();
-        var textFile = Resources.Load<TextAsset>("cfg_attr");
-        var data = JsonUtility.FromJson<TestData>(textFile.text);
-		Debug.Log(data.att);
+		Monster mon = new Monster();
+		World.GetInstance().AddEntity( 10, mon );
+        // var textFile = Resources.Load<TextAsset>("cfg_attr");
+        // var data = JsonUtility.FromJson<TestData>(textFile.text);
+		// Debug.Log(data.att);
 	}
 
 	public void Click()
