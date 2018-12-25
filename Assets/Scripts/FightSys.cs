@@ -5,10 +5,11 @@ using UnityEngine;
 public class FightSys : Singleton<FightSys>
 {
     ArrayList entityIds;
-
+    SortEntityBySpeed sortBySpeed;
     void Awake()
     {
         entityIds = new ArrayList();
+        sortBySpeed = new SortEntityBySpeed();
     }
 
     public void BeginFight()
@@ -18,12 +19,27 @@ public class FightSys : Singleton<FightSys>
     public void AddFightEntityId(int id)
     {
         if (!entityIds.Contains(id))
+        {
             entityIds.Add(id);
+            var e = World.GetInstance().GetEntity(id);
+            e.InitFight();
+        }
+
+
     }
 
     void FrameFight()
     {
+        entityIds.Sort(sortBySpeed);
+        foreach (int id in entityIds)
+        {
+            var e = World.GetInstance().GetEntity(id);
+        }
+    }
 
+    void Update()
+    {
+        FrameFight();
     }
 }
 

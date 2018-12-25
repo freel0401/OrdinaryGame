@@ -4,30 +4,40 @@ using UnityEngine;
 using System.Text;
 public partial class Entity
 {
-    string entityName;
+    protected string entityName;
+    private int guid;
     protected AttrSys attrs = new AttrSys();
 
-    public string EntityName
+    bool isMe = false;
+
+    public bool IsMe
+    {
+        get { return isMe; }
+        set { isMe = value; }
+    }
+
+    public int Guid
+    {
+        get { return guid; }
+        set { guid = value; }
+    }
+    public string Name
     {
         get { return entityName; }
         set { entityName = value; }
     }
 
-    public bool IsMe
+    public Entity()
     {
-        get { return isMe;  }
-        set { isMe = value; }
     }
-
-    bool isMe = false;
 
     protected void SetAttrs(string name, int value, bool isAdd)
     {
         int difVal = this.attrs.SetAttr(name, value, isAdd);
         if (this is MyRole)
         {
-            string dif = difVal>0?"增加":"减少";
-            AddMessage("属性"+ this.attrs.GetAttrName(name)+dif+value.ToString());
+            string dif = difVal > 0 ? "增加" : "减少";
+            AddMessage("属性" + this.attrs.GetAttrName(name) + dif + value.ToString());
         }
 
         Debug.Log("-------Entity---SetAttrs" + name + " | " + difVal);
@@ -45,9 +55,9 @@ public partial class Entity
     }
 
     protected void setInfo()
-	{
+    {
         UIFunc.GetInstance().setInfo(this);
-	}
+    }
 
     public string GetEntityShowInfo()
     {
@@ -59,5 +69,20 @@ public partial class Entity
         // sb.Append(this.attr)
         return sb.ToString();
     }
+
+    public void onUpdate()
+    {
+
+    }
+
+    // ---------------------Fight---------------------start
+    EntityFight fight;
+    public void InitFight()
+    {
+        if (fight==null)
+            fight = new EntityFight();
+        fight.Init();
+    }
+    // ---------------------Fight---------------------end
 
 }

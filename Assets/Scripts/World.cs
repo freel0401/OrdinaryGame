@@ -2,36 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World : Singleton<World> {
+public class World : Singleton<World>
+{
 
-	// Use this for initialization
-	MyRole me;
-	Dictionary<int, Entity> entityList;
-	void Start () {
-		me = new MyRole();
-		me.IsMe = true;
+    // Use this for initialization
+    MyRole me;
+    Dictionary<int, Entity> entityList;
+    void Start()
+    {
         entityList = new Dictionary<int, Entity>();
+        me = new MyRole();
+        me.Guid = Global.GetGuid();
+        me.IsMe = true;
+        AddEntity(me);
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
+		// TODO
+        // foreach (int key in entityList.Keys)
+        // {
+		// 	Entity e = entityList[key];
+		// 	e.onUpdate();
+        // }
+    }
 
-	}
+    public void AddEntity(Entity entity)
+    {
+        int guid = entity.Guid;
+        if (entityList.ContainsKey(guid) || entityList.ContainsValue(entity))
+            Debug.Log("wrong In AddEntity");
+        else
+        {
+            entityList.Add(guid, entity);
+        }
 
-	public void AddEntity(int id, Entity entity)
-	{
-		if (entityList.ContainsKey(id)||entityList.ContainsValue(entity))
-			Debug.Log("wrong In AddEntity");
-		else
-		{
-            entityList.Add(id, entity);
-		}
+    }
 
-	}
-
-	public Entity GetEntity(int id)
-	{
-		Entity entity = entityList[id];
-		return entity;
-	}
+    public Entity GetEntity(int id)
+    {
+        Entity entity = entityList[id];
+        return entity;
+    }
 }

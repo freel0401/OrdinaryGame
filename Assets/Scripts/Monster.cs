@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : Entity {
- public Monster()
+public class Monster : Entity
+{
+    //测试构造函数
+    public Monster()
     {
         foreach (string attr in AttrSys.ATTRNAME)
         {
-             SetAttrs(attr, 98, false);
+            SetAttrs(attr, 98, false);
         }
-		EntityName = "测试怪物";
+        entityName = "测试怪物";
         AddMessage("我出生了");
         setInfo();
 

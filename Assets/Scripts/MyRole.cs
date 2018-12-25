@@ -11,7 +11,7 @@ public class MyRole : Entity
         {
              SetAttrs(attr, 100, true);
         }
-		EntityName = "主角";
+		entityName = "主角";
         AddMessage("我出生了");
         setInfo();
 
