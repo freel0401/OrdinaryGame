@@ -427,7 +427,7 @@ local function apartNameType(line)
 	local pFlag = false
 	print("apartNameType info", line)
 	for i,v in pairs(line) do
-		print(i, v)
+		print('~@~', i, v)
 		tp[i] = {}
 		_,_, l[i], tp[i]['attr']= string.find(v,"([%w_]+):([%w<>,|#\\%-123456]+)")
 		if name[l[i]] then error('!!!Error: duplicate column name: '..l[i]..' !!!') end
@@ -874,6 +874,52 @@ local function copyFile(from, to)
 	fromf:close()
 	tof:close()
 end
+
+local type2Csharp = {
+	i = 'int',
+	s = 'string',
+	f = 'float',
+	b = 'bool',
+	array = '[]',
+}
+
+local function MarkCSharpFile(jsonFileName, datas, folder)
+	local colname = datas.colname --所有行的key
+	local tp = datas.tp -- 每个字段的类型
+	local keys = datas.keys -- 所有列的key
+	local classNamelower =jsonFileName:split'%.'[1]
+	local filename = classNamelower..'.cs'
+	local fword = classNamelower:sub(1,1)
+	local bword = classNamelower:sub(2,-1)
+	local className = fword:upper()..bword
+	-- print('#####', bword, className, classNamelower, fword:upper())
+	local tempName = className..'Temp'
+	-- print('####', filename)
+	dump(colname)
+	dump(tp)
+	local file = io.open(folder..filename, 'w')
+
+	file:write('using System.Collections;\n')
+	file:write('using System.Collections.Generic;\n')
+	file:write('using UnityEngine;\n')
+	file:write('[Serializable]\n')
+	file:write('public struct '..tempName..'\n')
+	file:write('{\n')
+	for i, v in ipairs(colname) do
+		local typeData = tp[i]
+		file:write('\tpublic '..type2Csharp[typeData.type]..(typeData.array and type2Csharp.array or '')..' '..v..';\n')
+	end
+	file:write('}\n')
+	file:write('[Serializable]\n')
+	file:write('public class '..className..'\n')
+	file:write('{\n')
+	for i, v in ipairs(keys) do
+		file:write('\tpublic '..tempName..' '..v..';\n')
+	end
+	file:write('}\n')
+	file:close()
+end
+
 --- 转换一个Excel文件为对应的Server、Client端Lua和Server端SQL文件
 
 local d = {}
@@ -882,10 +928,18 @@ local function convert(excel, sheets, cliPath, svrPath, name )
 	local svrdata,clidata,svrfile,clifile,dbfile,svrtp,clitp, pks = {},{},{},{},{},{},{},{}
 	local forks, svrsheetnames, clisheetnames = {}, {}, {}
 
+	local csharpData = {}
 	for n, s in pairs(sheets) do
 		if string.find(n,'^%#') then -- sheet名称必须以#开头才转
 			print('Start convert sheet '..n)
 			local count,sd,cd,sf,cf,db,tp,colname, pk = ExcelReadSheet(excel, s, n, cliPath, svrPath)
+			-- print('---@@@-----', count,sd,cd,sf,cf,db,tp,colname, pk)
+			-- dump(tp)
+			-- dump(colname)
+			dump(table.keys(cd))
+			if not csharpData[cf] then
+				csharpData[cf] = { colname=colname, tp=tp, keys=table.keys(cd) }
+			end
 			if count>0 then
 				svrfile, svrdata, dbfile, svrtp = insertMerge(svrfile, sf, svrdata, sd, dbfile, db, svrtp, tp)
 				clifile, clidata, _, clitp = insertMerge(clifile, cf, clidata, cd, nil, nil, clitp, tp, pks, pk)
@@ -928,8 +982,11 @@ local function convert(excel, sheets, cliPath, svrPath, name )
 	for i in pairs(clidata) do
 		clidata[i]=multiIndex(clidata[i],clitp[i],'client', forks[clifile[i]])
 		local file = (os.info.cconf or cliPath)..'/'..clifile[i], out
-		print('------------file', file, '~')
-		dump(clifile)
+		print('------------file', clifile[i], (os.info.cconf or cliPath), '~')
+		local csData = csharpData[clifile[i]]
+		-- dump(table.keys(clidata[i]) )
+		MarkCSharpFile(clifile[i], csData, (os.info.cconf or cliPath))
+		-- dump(clifile)
 		if not loadfeast then --or ret1 == nil or ret1 == false then
 			out = os.info.sconf and { write=assert, close=assert } or assert(io.open(file, 'wb'))
 			out:write(commentMsg)
@@ -938,7 +995,7 @@ local function convert(excel, sheets, cliPath, svrPath, name )
 			-- out:write("sheetname="..(clisheetnames[i] or '').."\n")
 			-- out:write('_G.'..cliname..' = { \n')
 			-- out:write('{\n')
-			dump(clidata[i])
+			-- dump(clidata[i])
 			serialize(clidata[i], out, 1, forks[clifile[i]])
 			-- out:write(", '"..pks[i].."' }")
 			out:close()
