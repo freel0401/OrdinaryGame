@@ -77,11 +77,12 @@ public partial class Entity
 
     // ---------------------Fight---------------------start
     EntityFight fight;
+    public EntityFight Fight { get { return fight; } set { fight = value; } }
     public void InitFight()
     {
-        if (fight==null)
-            fight = new EntityFight();
-        fight.Init();
+        if (Fight == null)
+            Fight = new EntityFight();
+        Fight.Init();
     }
     // ---------------------Fight---------------------end
 

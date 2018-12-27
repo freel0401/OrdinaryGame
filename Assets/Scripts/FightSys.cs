@@ -34,6 +34,11 @@ public class FightSys : Singleton<FightSys>
         foreach (int id in entityIds)
         {
             var e = World.GetInstance().GetEntity(id);
+            if (!e.Fight.Fired)
+            {
+                e.Fight.Fired = true;
+                break;
+            }
         }
     }
 

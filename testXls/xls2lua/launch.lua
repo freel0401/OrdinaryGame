@@ -902,7 +902,7 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	file:write('using System.Collections;\n')
 	file:write('using System.Collections.Generic;\n')
 	file:write('using UnityEngine;\n')
-	file:write('[Serializable]\n')
+	file:write('[System.Serializable]\n')
 	file:write('public struct '..tempName..'\n')
 	file:write('{\n')
 	for i, v in ipairs(colname) do
@@ -910,7 +910,7 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 		file:write('\tpublic '..type2Csharp[typeData.type]..(typeData.array and type2Csharp.array or '')..' '..v..';\n')
 	end
 	file:write('}\n')
-	file:write('[Serializable]\n')
+	file:write('[System.Serializable]\n')
 	file:write('public class '..className..'\n')
 	file:write('{\n')
 	for i, v in ipairs(keys) do

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[Serializable]
+[System.Serializable]
 public struct Cfg_attrTemp
 {
 	public string sid;
@@ -12,7 +12,7 @@ public struct Cfg_attrTemp
 	public bool isint;
 	public int[] testtable;
 }
-[Serializable]
+[System.Serializable]
 public class Cfg_attr
 {
 	public Cfg_attrTemp hit;
