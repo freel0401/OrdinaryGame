@@ -20,9 +20,15 @@ public Entity e;
 		// string tdstring = JsonUtility.ToJson(td.attrs);
 		// Debug.Log(tdstring);
 		// MyRole me = new MyRole();
+		World w = World.GetInstance();
 		Monster mon = new Monster();
 		mon.Guid = Global.GetGuid();
-		World.GetInstance().AddEntity( mon );
+		w.AddEntity( mon );
+		FightSys f = FightSys.GetInstance();
+		f.AddFightEntityId(mon.Guid);
+		f.AddFightEntityId(w.GetMe().Guid);
+		f.BeginFight();
+
         // var textFile = Resources.Load<TextAsset>("cfg_attr");
         // var data = JsonUtility.FromJson<TestData>(textFile.text);
 		// Debug.Log(data.att);

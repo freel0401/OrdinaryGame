@@ -4,47 +4,136 @@ using UnityEngine;
 
 public class FightSys : Singleton<FightSys>
 {
-    ArrayList entityIds;
-    SortEntityBySpeed sortBySpeed;
+    bool fighting; //是否战斗中
+    float pauseTime;
+    ArrayList entityGuids; //参与战斗的角色GUID列表
+    SortEntityBySpeed sortBySpeed;//比较速度的排序回调方法
     void Awake()
     {
-        entityIds = new ArrayList();
+        fighting = false;
+        entityGuids = new ArrayList();
         sortBySpeed = new SortEntityBySpeed();
     }
 
     public void BeginFight()
     {
-        entityIds.Clear();
+        foreach (int guid in entityGuids)
+        {
+            var e = World.GetInstance().GetEntity(guid);
+            findTarget(e);
+        }
+        fighting = true;
+        pauseTime = 1;
     }
+
+    public void EndFight()
+    {
+        fighting = false;
+        entityGuids.Clear();
+        Debug.Log("EndFight");
+    }
+
+    //寻找目标
+    void findTarget(Entity e)
+    {
+        int myGuid = e.Guid;
+        int myCamp = e.Fight.Camp;
+        foreach (int guid in entityGuids)
+        {
+            if (guid != myGuid)
+            {
+                var tar = World.GetInstance().GetEntity(guid);
+                if (tar.Fight.Camp != myCamp)
+                {
+                    e.Fight.SetTarget(tar.Guid);
+                    break;
+                }
+            }
+        }
+    }
+
+    //计算伤害
+    int calculateDamage(Entity src, Entity tar)
+    {
+        int srcAtk = src.GetAttr("att");
+        int tarDef = tar.GetAttr("def");
+        int damage = srcAtk - (tarDef/2);
+        return damage;
+    }
+
+    //角色攻击
+    void entityFire(Entity src)
+    {
+        int tarGuid = src.Fight.TargetGuid;
+        Entity tar = World.GetInstance().GetEntity(tarGuid);
+        if (tar != null)
+        {
+            int damage = calculateDamage(src, tar);
+            if (damage!=0)
+            {
+                tar.SetAttrs("hp", -damage, true);
+                if (tar.GetAttr("hp")<=0)
+                {
+                    EndFight();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("-----entityFire--" + src.Guid + "not found target!");
+        }
+    }
+
     public void AddFightEntityId(int id)
     {
-        if (!entityIds.Contains(id))
+        if (!entityGuids.Contains(id))
         {
-            entityIds.Add(id);
+            entityGuids.Add(id);
             var e = World.GetInstance().GetEntity(id);
             e.InitFight();
         }
-
-
     }
 
+    //战斗主循环
     void FrameFight()
     {
-        entityIds.Sort(sortBySpeed);
-        foreach (int id in entityIds)
+        pauseTime -= Time.deltaTime;
+        if (pauseTime>=0)
+        {
+            return;
+        }
+        Debug.Log("----one Frame---");
+        entityGuids.Sort(sortBySpeed);
+        bool noOneFired = true;
+        foreach (int id in entityGuids)
         {
             var e = World.GetInstance().GetEntity(id);
             if (!e.Fight.Fired)
             {
+                entityFire(e);
                 e.Fight.Fired = true;
+                pauseTime = 1;
+                noOneFired = false;
                 break;
+            }
+        }
+        if (noOneFired)
+        {
+            if (noOneFired)
+            {
+                foreach (int id in entityGuids)
+                {
+                    var e = World.GetInstance().GetEntity(id);
+                    e.Fight.Fired = false;
+                }
             }
         }
     }
 
     void Update()
     {
-        FrameFight();
+        if (fighting)
+            FrameFight();
     }
 }
 

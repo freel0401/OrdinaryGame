@@ -31,7 +31,7 @@ public partial class Entity
     {
     }
 
-    protected void SetAttrs(string name, int value, bool isAdd)
+    public void SetAttrs(string name, int value, bool isAdd)
     {
         int difVal = this.attrs.SetAttr(name, value, isAdd);
         if (this is MyRole)

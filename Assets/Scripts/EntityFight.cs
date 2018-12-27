@@ -9,11 +9,15 @@ public class EntityFight
 
     int targetGuid; //目标的guid
 
+	int camp;//阵营
+
     public int IdleTime { get { return idleTime; } set { idleTime = value; } }
 
     public bool Fired { get { return fired; } set { fired = value; } }
 
     public int TargetGuid { get { return targetGuid; } set { targetGuid = value; } }
+
+    public int Camp { get { return camp;} set {camp = value;} }
 
     public void Init()
     {
@@ -21,9 +25,9 @@ public class EntityFight
         fired = false;
     }
 
-	public int FindTarget()
+	public void SetTarget(int tarGuid)
 	{
-		return 0;
+		targetGuid = tarGuid;
 	}
 
 }

@@ -45,4 +45,9 @@ public class World : Singleton<World>
         Entity entity = entityList[id];
         return entity;
     }
+
+    public Entity GetMe()
+    {
+        return me;
+    }
 }
