@@ -30,6 +30,8 @@ public class FightSys : Singleton<FightSys>
     {
         fighting = false;
         entityGuids.Clear();
+        //TEST
+        UIFunc.GetInstance().AddMessage("战斗结束");
         Debug.Log("EndFight");
     }
 
@@ -72,10 +74,12 @@ public class FightSys : Singleton<FightSys>
             if (damage!=0)
             {
                 tar.SetAttrs("hp", -damage, true);
+                src.Fight.Fired = true;
                 if (tar.GetAttr("hp")<=0)
                 {
                     EndFight();
                 }
+
             }
         }
         else
@@ -108,10 +112,10 @@ public class FightSys : Singleton<FightSys>
         foreach (int id in entityGuids)
         {
             var e = World.GetInstance().GetEntity(id);
+            Debug.Log("-------------FrameFight---" + e.Name + id);
             if (!e.Fight.Fired)
             {
                 entityFire(e);
-                e.Fight.Fired = true;
                 pauseTime = 1;
                 noOneFired = false;
                 break;
@@ -119,13 +123,10 @@ public class FightSys : Singleton<FightSys>
         }
         if (noOneFired)
         {
-            if (noOneFired)
+            foreach (int id in entityGuids)
             {
-                foreach (int id in entityGuids)
-                {
-                    var e = World.GetInstance().GetEntity(id);
-                    e.Fight.Fired = false;
-                }
+                var e = World.GetInstance().GetEntity(id);
+                e.Fight.Fired = false;
             }
         }
     }

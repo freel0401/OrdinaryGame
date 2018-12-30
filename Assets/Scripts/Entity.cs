@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
-public partial class Entity
+public class Entity
 {
     protected string entityName;
     private int guid;
@@ -27,20 +27,19 @@ public partial class Entity
         set { entityName = value; }
     }
 
-    public Entity()
+    public void InitAttr()
     {
-    }
 
+    }
     public void SetAttrs(string name, int value, bool isAdd)
     {
         int difVal = this.attrs.SetAttr(name, value, isAdd);
         if (this is MyRole)
         {
             string dif = difVal > 0 ? "增加" : "减少";
-            AddMessage("属性" + this.attrs.GetAttrName(name) + dif + value.ToString());
+            AddMessage(entityName + " 属性" + this.attrs.GetAttrName(name) + dif + value.ToString());
         }
-
-        Debug.Log("-------Entity---SetAttrs" + name + " | " + difVal);
+        // setInfo();
         // attrs = value;
     }
 
@@ -49,6 +48,7 @@ public partial class Entity
         return attrs[name];
     }
 
+    // -------show Message-----begin
     protected void AddMessage(string msg)
     {
         UIFunc.GetInstance().AddMessage(msg);
@@ -69,7 +69,7 @@ public partial class Entity
         // sb.Append(this.attr)
         return sb.ToString();
     }
-
+    // -------show Message-----end
     public void onUpdate()
     {
 
@@ -84,6 +84,14 @@ public partial class Entity
             Fight = new EntityFight();
         Fight.Init();
     }
+
+    public bool ModifyHp( int damage )
+    {
+        SetAttrs("hp", -damage, true);
+
+        return false;
+    }
+
     // ---------------------Fight---------------------end
 
 }

@@ -22,11 +22,14 @@ public Entity e;
 		// MyRole me = new MyRole();
 		World w = World.GetInstance();
 		Monster mon = new Monster();
+		Entity me = w.GetMe();
 		mon.Guid = Global.GetGuid();
 		w.AddEntity( mon );
 		FightSys f = FightSys.GetInstance();
 		f.AddFightEntityId(mon.Guid);
-		f.AddFightEntityId(w.GetMe().Guid);
+		f.AddFightEntityId(me.Guid);
+		mon.Fight.Camp = 0;
+		me.Fight.Camp = 1;
 		f.BeginFight();
 
         // var textFile = Resources.Load<TextAsset>("cfg_attr");

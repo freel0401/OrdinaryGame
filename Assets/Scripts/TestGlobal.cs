@@ -49,4 +49,18 @@ public class Global {
     {
         return guid++;
     }
+
+    static public ConfBase GetConf(string name)
+    {
+        // ConfBase conf =
+        var textFile = Resources.Load<TextAsset>(name);
+        ConfBase data = JsonUtility.FromJson<ConfBase>(textFile.text);
+		// Debug.Log(data.att);
+        return data;
+    }
+}
+
+public class ConfBase
+{
+
 }

@@ -2,106 +2,33 @@
 "att" : {
 "index" : 3,
 "isint" : true,
+"key" : "att",
 "max" : 99999999,
 "min" : 0,
-"name" : "攻击",
-"sid" : "att",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
-},
-"cri" : {
-"index" : 7,
-"isint" : true,
-"max" : 99999999,
-"min" : 0,
-"name" : "暴击",
-"sid" : "cri",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
+"name" : "攻击"
 },
 "def" : {
 "index" : 4,
 "isint" : true,
+"key" : "def",
 "max" : 99999999,
 "min" : 0,
-"name" : "护甲",
-"sid" : "def",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
-},
-"dodge" : {
-"index" : 6,
-"isint" : true,
-"max" : 99999999,
-"min" : 0,
-"name" : "闪避",
-"sid" : "dodge",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
-},
-"hit" : {
-"index" : 5,
-"isint" : true,
-"max" : 99999999,
-"min" : 0,
-"name" : "命中",
-"sid" : "hit",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
+"name" : "护甲"
 },
 "maxHp" : {
 "index" : 2,
 "isint" : true,
+"key" : "maxHp",
 "max" : 999999999999,
 "min" : 1,
-"name" : "生命",
-"sid" : "maxHp",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
+"name" : "生命"
 },
 "speed" : {
 "index" : 1,
 "isint" : true,
+"key" : "speed",
 "max" : 99999999,
 "min" : 0,
-"name" : "移动速度",
-"sid" : "speed",
-"testtable" : [
-1,
-2,
-3,
-4,
-5
-]
+"name" : "速度"
 }
 }

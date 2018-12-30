@@ -911,7 +911,7 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	end
 	file:write('}\n')
 	file:write('[System.Serializable]\n')
-	file:write('public class '..className..'\n')
+	file:write('public class '..className..' : ConfBase\n')
 	file:write('{\n')
 	for i, v in ipairs(keys) do
 		file:write('\tpublic '..tempName..' '..v..';\n')

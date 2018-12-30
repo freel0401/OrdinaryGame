@@ -12,7 +12,7 @@ public class Monster : Entity
             SetAttrs(attr, 98, false);
         }
         entityName = "测试怪物";
-        AddMessage("我出生了");
+        AddMessage(entityName + "出生了");
         setInfo();
 
     }
