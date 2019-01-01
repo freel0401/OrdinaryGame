@@ -6,23 +6,6 @@ public class TestGlobal : MonoBehaviour{
 	void onStart()
 	{}
 }
-public abstract class Singleton<T> : MonoBehaviour
-    where T : MonoBehaviour
-{
-    private static T _instance;
-
-    public static T GetInstance()
-    {
-        if (_instance == null)
-        {
-            Debug.Log("Create " + typeof(T).ToString() + " singleton...");
-            _instance = GameObject.FindObjectOfType<T>();
-            if (_instance == null)
-                Debug.LogError("Class of " + typeof(T).ToString() + " not found!");
-        }
-        return _instance;
-    }
-}
 
 public class Global {
     static int guid = 0;
@@ -60,7 +43,29 @@ public class Global {
     }
 }
 
+public class Conf
+{
+    static Dictionary<string, ConfBase> confs;
+    public Conf()
+    {
+        Confs = new Dictionary<string, ConfBase>();
+    }
+
+    static public Dictionary<string, ConfBase> Confs { get {return confs;}  set { confs = value; } }
+    static public ConfBase GetConf(string name)
+    {
+        if (!Conf.confs.ContainsKey(name))
+        {
+            var textFile = Resources.Load<TextAsset>(name);
+            ConfBase data = JsonUtility.FromJson<ConfBase>(textFile.text);
+            Conf.confs.Add(name, data);
+        }
+        return Conf.confs[name];
+    }
+}
+
 public class ConfBase
 {
 
 }
+

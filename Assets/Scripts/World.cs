@@ -6,12 +6,12 @@ public class World : Singleton<World>
 {
 
     // Use this for initialization
-    MyRole me;
+    Entity me;
     Dictionary<int, Entity> entityList;
     void Start()
     {
         entityList = new Dictionary<int, Entity>();
-        me = new MyRole();
+        me = new Entity("role");
         me.Guid = Global.GetGuid();
         me.IsMe = true;
         AddEntity(me);
@@ -38,6 +38,13 @@ public class World : Singleton<World>
             entityList.Add(guid, entity);
         }
 
+    }
+
+    public Entity AddMonster()
+    {
+        Entity mon = new Entity("monster");
+        AddEntity( mon );
+        return mon;
     }
 
     public Entity GetEntity(int id)

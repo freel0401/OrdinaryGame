@@ -32,7 +32,7 @@ public class UIFunc : Singleton<UIFunc>
 
     public void setInfo(Entity entity)
     {
-        if (entity is MyRole)
+        if (entity.isRole())
             PlayerInfo.text = entity.GetEntityShowInfo();
         else
         {

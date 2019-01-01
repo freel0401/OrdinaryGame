@@ -14,17 +14,11 @@ public class BtnClick : MonoBehaviour {
 	void Update () {
 
 	}
-public Entity e;
     public void showText(){
-		// TestData td = new TestData();
-		// string tdstring = JsonUtility.ToJson(td.attrs);
-		// Debug.Log(tdstring);
-		// MyRole me = new MyRole();
+
 		World w = World.GetInstance();
-		Monster mon = new Monster();
 		Entity me = w.GetMe();
-		mon.Guid = Global.GetGuid();
-		w.AddEntity( mon );
+		Entity mon = w.AddMonster();
 		FightSys f = FightSys.GetInstance();
 		f.AddFightEntityId(mon.Guid);
 		f.AddFightEntityId(me.Guid);

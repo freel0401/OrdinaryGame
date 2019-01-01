@@ -14,8 +14,9 @@ public struct Cfg_attrTemp
 [System.Serializable]
 public class Cfg_attr : ConfBase
 {
-	public Cfg_attrTemp maxHp;
 	public Cfg_attrTemp att;
+	public Cfg_attrTemp maxHp;
+	public Cfg_attrTemp hp;
 	public Cfg_attrTemp def;
 	public Cfg_attrTemp speed;
 }

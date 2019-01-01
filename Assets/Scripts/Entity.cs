@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Text;
 public class Entity
 {
+    public string entityType;
     protected string entityName;
     private int guid;
     protected AttrSys attrs = new AttrSys();
@@ -27,14 +28,30 @@ public class Entity
         set { entityName = value; }
     }
 
-    public void InitAttr()
+    public bool isRole()
+    {
+        return entityType=="role";
+    }
+
+     public bool isMon()
+    {
+        return entityType=="monster";
+    }
+
+    public Entity(string type)
+    {
+        entityType = type;
+        guid = Global.GetGuid();
+    }
+
+    protected void InitAttr()
     {
 
     }
     public void SetAttrs(string name, int value, bool isAdd)
     {
         int difVal = this.attrs.SetAttr(name, value, isAdd);
-        if (this is MyRole)
+        if (isRole())
         {
             string dif = difVal > 0 ? "增加" : "减少";
             AddMessage(entityName + " 属性" + this.attrs.GetAttrName(name) + dif + value.ToString());

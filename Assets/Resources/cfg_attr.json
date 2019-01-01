@@ -1,6 +1,6 @@
 {
 "att" : {
-"index" : 3,
+"index" : 4,
 "isint" : true,
 "key" : "att",
 "max" : 99999999,
@@ -8,15 +8,23 @@
 "name" : "攻击"
 },
 "def" : {
-"index" : 4,
+"index" : 5,
 "isint" : true,
 "key" : "def",
 "max" : 99999999,
 "min" : 0,
 "name" : "护甲"
 },
-"maxHp" : {
+"hp" : {
 "index" : 2,
+"isint" : true,
+"key" : "hp",
+"max" : 999999999999,
+"min" : 1,
+"name" : "生命"
+},
+"maxHp" : {
+"index" : 3,
 "isint" : true,
 "key" : "maxHp",
 "max" : 999999999999,
