@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,9 +11,10 @@ public class World : Singleton<World>
     void Start()
     {
         entityList = new Dictionary<int, Entity>();
-        me = new Entity("role");
+        me = new Entity(EntityType.ROLE);
         me.Guid = Global.GetGuid();
         me.IsMe = true;
+        me.Name = "主角";
         AddEntity(me);
     }
 
@@ -42,8 +43,10 @@ public class World : Singleton<World>
 
     public Entity AddMonster()
     {
-        Entity mon = new Entity("monster");
+        Entity mon = new Entity(EntityType.MONSTER);
         AddEntity( mon );
+        //DEBUG
+        mon.Name = "测试怪物"+mon.Guid.ToString();
         return mon;
     }
 

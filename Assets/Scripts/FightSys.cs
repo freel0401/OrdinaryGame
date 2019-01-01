@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,8 +57,8 @@ public class FightSys : Singleton<FightSys>
     //计算伤害
     int calculateDamage(Entity src, Entity tar)
     {
-        int srcAtk = src.GetAttr("att");
-        int tarDef = tar.GetAttr("def");
+        int srcAtk = src.GetAttr(ATTRS.ATT);
+        int tarDef = tar.GetAttr(ATTRS.DEF);
         int damage = srcAtk - (tarDef/2);
         return damage;
     }
@@ -73,9 +73,9 @@ public class FightSys : Singleton<FightSys>
             int damage = calculateDamage(src, tar);
             if (damage!=0)
             {
-                tar.SetAttrs("hp", -damage, true);
+                tar.ModifyHp(damage);
                 src.Fight.Fired = true;
-                if (tar.GetAttr("hp")<=0)
+                if (tar.GetAttr(ATTRS.HP)<=0)
                 {
                     EndFight();
                 }
@@ -144,6 +144,6 @@ public class SortEntityBySpeed : IComparer
     {
         Entity e1 = World.GetInstance().GetEntity((int)eId1);
         Entity e2 = World.GetInstance().GetEntity((int)eId2);
-        return e1.GetAttr("speed").CompareTo(e2.GetAttr("speed"));
+        return e1.GetAttr(ATTRS.SPEED).CompareTo(e2.GetAttr(ATTRS.SPEED));
     }
 }

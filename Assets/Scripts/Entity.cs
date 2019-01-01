@@ -1,13 +1,20 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
+
+public enum EntityType
+{
+    ROLE,
+    MONSTER,
+}
 public class Entity
 {
-    public string entityType;
+    protected EntityType entityType;
     protected string entityName;
     private int guid;
-    protected AttrSys attrs = new AttrSys();
+    // protected AttrSys attrs = new AttrSys();
+    protected int[] attrs;
 
     bool isMe = false;
 
@@ -30,41 +37,51 @@ public class Entity
 
     public bool isRole()
     {
-        return entityType=="role";
+        return entityType==EntityType.ROLE;
     }
 
      public bool isMon()
     {
-        return entityType=="monster";
+        return entityType==EntityType.MONSTER;
     }
 
-    public Entity(string type)
+    public Entity(EntityType type)
     {
         entityType = type;
         guid = Global.GetGuid();
+        InitAttr();
+        setInfo();
     }
 
+    // -------------ATTRS--------------beign
     protected void InitAttr()
     {
-
+        //TEMP
+        attrs = new int[]{100, 100, 100, 100, 100};
     }
-    public void SetAttrs(string name, int value, bool isAdd)
+    public void SetAttrs(ATTRS attr, int value, bool isAdd)
     {
-        int difVal = this.attrs.SetAttr(name, value, isAdd);
+        int index =(int)attr;
+        int old = attrs[index];
+        if (isAdd)
+            attrs[index] += value;
+        else
+            attrs[index] = value;
+        int difVal = old - attrs[index];
         if (isRole())
         {
             string dif = difVal > 0 ? "增加" : "减少";
-            AddMessage(entityName + " 属性" + this.attrs.GetAttrName(name) + dif + value.ToString());
+            AddMessage(entityName + " 属性" + AttrSys.GetAttrName(index) + dif + value.ToString());
         }
-        // setInfo();
+        setInfo();
         // attrs = value;
     }
 
-    public int GetAttr(string name)
+    public int GetAttr(ATTRS index)
     {
-        return attrs[name];
+        return attrs[(int)index];
     }
-
+    // -------------ATTRS--------------end
     // -------show Message-----begin
     protected void AddMessage(string msg)
     {
@@ -78,12 +95,11 @@ public class Entity
 
     public string GetEntityShowInfo()
     {
-        string attrInfo = attrs.FormatAttrs();
+        string attrInfo = AttrSys.FormatAttrs(attrs);
         StringBuilder sb = Global.GetStringBuilder();
         sb.Append(entityName);
         sb.Append("\n");
         sb.Append(attrInfo);
-        // sb.Append(this.attr)
         return sb.ToString();
     }
     // -------show Message-----end
@@ -104,7 +120,7 @@ public class Entity
 
     public bool ModifyHp( int damage )
     {
-        SetAttrs("hp", -damage, true);
+        SetAttrs(ATTRS.HP, -damage, true);
 
         return false;
     }

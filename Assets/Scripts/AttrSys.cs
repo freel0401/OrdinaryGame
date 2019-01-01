@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
-enum ATTRS
+public enum ATTRS
 {
     ATT, DEF, HP, MAXHP, SPEED
 }
@@ -13,7 +13,7 @@ public class AttrSys
     // 属性
     private int[] attrs = { 10, 0, 100, 100, 10 };
 
-    static public string[] ATTRSTING = { "攻击力", "防御力", "生命", "最大生命", "速度" };
+    static public string[] ATTRSTING = { "攻击", "防御", "生命", "最大生命", "速度" };
     static public string[] ATTRNAME = { "att", "def", "hp", "maxHp", "speed" };
 
     // 属性查询
@@ -70,7 +70,7 @@ public class AttrSys
         return diffValue;
     }
 
-    public string FormatAttrs()
+    static public string FormatAttrs(int[] attrs)
     {
         StringBuilder sb = Global.GetStringBuilder();
         for (int i = 0; i < ATTRSTING.Length; i++)
@@ -83,8 +83,8 @@ public class AttrSys
         return sb.ToString();
     }
 
-    public string GetAttrName(string name)
+    static public string GetAttrName(int index)
     {
-        return ATTRSTING[getKeyIndex(name)];
+        return ATTRSTING[index];
     }
 }
