@@ -59,19 +59,13 @@ public class Entity
         //TEMP
         attrs = new int[]{100, 100, 100, 100, 100};
     }
-    public void SetAttrs(ATTRS attr, int value, bool isAdd)
+    public void SetAttr(ATTRS attr, int value, bool isAdd)
     {
-        int index =(int)attr;
-        int old = attrs[index];
-        if (isAdd)
-            attrs[index] += value;
-        else
-            attrs[index] = value;
-        int difVal = old - attrs[index];
+        int difVal = AttrSys.SetAttr(ref attrs, attr, value, isAdd);
         if (isRole())
         {
-            string dif = difVal > 0 ? "增加" : "减少";
-            AddMessage(entityName + " 属性" + AttrSys.GetAttrName(index) + dif + value.ToString());
+            string dif = difVal >= 0 ? "增加" : "减少";
+            AddMessage(entityName + " 属性" + AttrSys.GetAttrName(attr) + dif + value.ToString());
         }
         setInfo();
         // attrs = value;
@@ -120,9 +114,14 @@ public class Entity
 
     public bool ModifyHp( int damage )
     {
-        SetAttrs(ATTRS.HP, -damage, true);
+        SetAttr(ATTRS.HP, -damage, true);
 
         return false;
+    }
+
+    public void ResetHp()
+    {
+        SetAttr(ATTRS.HP, attrs[(int)ATTRS.MAXHP], false);
     }
 
     // ---------------------Fight---------------------end

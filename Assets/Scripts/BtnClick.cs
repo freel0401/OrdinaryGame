@@ -18,6 +18,7 @@ public class BtnClick : MonoBehaviour {
 
 		World w = World.GetInstance();
 		Entity me = w.GetMe();
+		me.ResetHp();
 		Entity mon = w.AddMonster();
 		FightSys f = FightSys.GetInstance();
 		f.AddFightEntityId(mon.Guid);

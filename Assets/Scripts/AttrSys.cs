@@ -10,64 +10,19 @@ public enum ATTRS
 
 public class AttrSys
 {
-    // 属性
-    private int[] attrs = { 10, 0, 100, 100, 10 };
-
     static public string[] ATTRSTING = { "攻击", "防御", "生命", "最大生命", "速度" };
     static public string[] ATTRNAME = { "att", "def", "hp", "maxHp", "speed" };
 
-    // 属性查询
-    public int this[string name]
+    static public int SetAttr(ref int[] attrs, ATTRS attr, int value, bool isAdd)
     {
-        get
-        {
-            int index = getKeyIndex(name);
-            if (index >= 0 && index <= attrs.Length - 1)
-                return attrs[index];
-            return 0;
-        }
-        set
-        {
-            Debug.Log("set Attr value Use function SetAttr");
-        }
-    }
-    public int this[int index]
-    {
-        get
-        {
-            if (index >= 0 && index <= attrs.Length - 1)
-                return attrs[index];
-            return 0;
-        }
-        set { Debug.Log("set Attr value Use function SetAttr"); }
-    }
+        int index =(int)attr;
+        int old = attrs[index];
+        if (isAdd)
+            attrs[index] += value;
+        else
+            attrs[index] = value;
 
-    int getKeyIndex(string name)
-    {
-        for (int i = 0; i < ATTRNAME.Length; i++)
-        {
-            if (ATTRNAME[i] == name)
-                return i;
-        }
-        return -1;
-    }
-
-    // 创建和设置
-    public int SetAttr(string kind, int value, bool isAdd)
-    {
-        int diffValue = 0;
-        // TODO 检查最大值最小值, 检查类型
-        int index = getKeyIndex(kind);
-        if (index >= 0 && index <= attrs.Length - 1)
-        {
-            diffValue = value;
-            if (isAdd)
-                attrs[index] += value;
-            else
-                attrs[index] = value;
-            diffValue -= attrs[index];
-        }
-        return diffValue;
+        return  attrs[index] - old;
     }
 
     static public string FormatAttrs(int[] attrs)
@@ -83,8 +38,8 @@ public class AttrSys
         return sb.ToString();
     }
 
-    static public string GetAttrName(int index)
+    static public string GetAttrName(ATTRS index)
     {
-        return ATTRSTING[index];
+        return ATTRSTING[(int)index];
     }
 }
