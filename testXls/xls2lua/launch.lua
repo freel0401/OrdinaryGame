@@ -910,12 +910,32 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 		file:write('\tpublic '..type2Csharp[typeData.type]..(typeData.array and type2Csharp.array or '')..' '..v..';\n')
 	end
 	file:write('}\n')
+	-- 表变量定义
 	file:write('[System.Serializable]\n')
 	file:write('public class '..className..' : ConfBase\n')
 	file:write('{\n')
 	for i, v in ipairs(keys) do
 		file:write('\tpublic '..tempName..' '..v..';\n')
 	end
+	-- 遍历用的字典
+	file:write('\tpublic Dictionary<string, '..tempName..'> cfgs;\n')
+	-- 构造函数
+	file:write('\tpublic void Init()\n')
+	file:write('\t{\n')
+	file:write('\t\tcfgs = new Dictionary<string, '..tempName..'>();\n')
+	for i, v in ipairs(keys) do
+		file:write('\t\tcfgs.Add("'..v..'", '..v..');\n')
+	end
+	file:write('\t}\n')
+	-- 加载的方法
+	-- file:write('\tstatic public '..className..' GetConf()\n')
+	-- file:write('\t{\n')
+	-- file:write('\t\tvar textFile = Resources.Load<TextAsset>("'..classNamelower..'");\n')
+	-- file:write('\t\t'..className..' data = JsonUtility.FromJson<'..className..'>(textFile.text);\n')
+
+	-- file:write('\t\treturn data;\n')
+	-- file:write('\t}\n')
+
 	file:write('}\n')
 	file:close()
 end
@@ -1202,4 +1222,4 @@ table.push(textks, false, false)
 
 
 print('\n======= END ========')
--- os.exit()
+os.exit()

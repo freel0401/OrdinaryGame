@@ -19,4 +19,14 @@ public class Cfg_attr : ConfBase
 	public Cfg_attrTemp hp;
 	public Cfg_attrTemp def;
 	public Cfg_attrTemp speed;
+	public Dictionary<string, Cfg_attrTemp> cfgs;
+	public void Init()
+	{
+		cfgs = new Dictionary<string, Cfg_attrTemp>();
+		cfgs.Add("att", att);
+		cfgs.Add("maxHp", maxHp);
+		cfgs.Add("hp", hp);
+		cfgs.Add("def", def);
+		cfgs.Add("speed", speed);
+	}
 }

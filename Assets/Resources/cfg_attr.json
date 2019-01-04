@@ -29,7 +29,7 @@
 "key" : "maxHp",
 "max" : 999999999999,
 "min" : 1,
-"name" : "生命"
+"name" : "最大生命"
 },
 "speed" : {
 "index" : 1,

@@ -27,6 +27,7 @@ public class AttrSys
 
     static public string FormatAttrs(int[] attrs)
     {
+
         StringBuilder sb = Global.GetStringBuilder();
         for (int i = 0; i < ATTRSTING.Length; i++)
         {

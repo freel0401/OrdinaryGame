@@ -15,6 +15,12 @@ public class BtnClick : MonoBehaviour {
 
 	}
     public void showText(){
+        var ca = Config.CfgAttr;
+        Debug.Log(ca.att);
+        foreach (var item in ca.cfgs)
+        {
+            Debug.Log(item);
+        }
 
 		World w = World.GetInstance();
 		Entity me = w.GetMe();
@@ -26,10 +32,6 @@ public class BtnClick : MonoBehaviour {
 		mon.Fight.Camp = 0;
 		me.Fight.Camp = 1;
 		f.BeginFight();
-
-        // var textFile = Resources.Load<TextAsset>("cfg_attr");
-        // var data = JsonUtility.FromJson<TestData>(textFile.text);
-		// Debug.Log(data.att);
 	}
 
 	public void Click()

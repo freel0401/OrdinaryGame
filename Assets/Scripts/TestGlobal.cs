@@ -33,39 +33,14 @@ public class Global {
         return guid++;
     }
 
-    static public ConfBase GetConf(string name)
-    {
-        // ConfBase conf =
-        var textFile = Resources.Load<TextAsset>(name);
-        ConfBase data = JsonUtility.FromJson<ConfBase>(textFile.text);
-		// Debug.Log(data.att);
-        return data;
-    }
+    // static public ConfBase GetConf(string name)
+    // {
+    //     // ConfBase conf =
+    //     var textFile = Resources.Load<TextAsset>(name);
+    //     ConfBase data = JsonUtility.FromJson<ConfBase>(textFile.text);
+	// 	// Debug.Log(data.att);
+    //     return data;
+    // }
 }
 
-public class Conf
-{
-    static Dictionary<string, ConfBase> confs;
-    public Conf()
-    {
-        Confs = new Dictionary<string, ConfBase>();
-    }
-
-    static public Dictionary<string, ConfBase> Confs { get {return confs;}  set { confs = value; } }
-    static public ConfBase GetConf(string name)
-    {
-        if (!Conf.confs.ContainsKey(name))
-        {
-            var textFile = Resources.Load<TextAsset>(name);
-            ConfBase data = JsonUtility.FromJson<ConfBase>(textFile.text);
-            Conf.confs.Add(name, data);
-        }
-        return Conf.confs[name];
-    }
-}
-
-public class ConfBase
-{
-
-}
 

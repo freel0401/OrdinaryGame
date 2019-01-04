@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World : Singleton<World>
+public class World : SingletonMB<World>
 {
 
     // Use this for initialization
