@@ -10,6 +10,7 @@ public struct Cfg_attrTemp
 	public int max;
 	public string name;
 	public bool isint;
+	public int[] testlist;
 }
 [System.Serializable]
 public class Cfg_attr : ConfBase
@@ -19,14 +20,15 @@ public class Cfg_attr : ConfBase
 	public Cfg_attrTemp hp;
 	public Cfg_attrTemp def;
 	public Cfg_attrTemp speed;
-	public Dictionary<string, Cfg_attrTemp> cfgs;
+	private Cfg_attrTemp[] allcfgs;
+	public Cfg_attrTemp[] AllCfgs { get { return allcfgs; } set {} }
 	public void Init()
 	{
-		cfgs = new Dictionary<string, Cfg_attrTemp>();
-		cfgs.Add("att", att);
-		cfgs.Add("maxHp", maxHp);
-		cfgs.Add("hp", hp);
-		cfgs.Add("def", def);
-		cfgs.Add("speed", speed);
+		allcfgs = new Cfg_attrTemp[5];
+		allcfgs[0] = att;
+		allcfgs[1] = maxHp;
+		allcfgs[2] = hp;
+		allcfgs[3] = def;
+		allcfgs[4] = speed;
 	}
 }

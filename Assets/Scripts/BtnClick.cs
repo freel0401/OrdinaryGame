@@ -17,10 +17,11 @@ public class BtnClick : MonoBehaviour {
     public void showText(){
         var ca = Config.CfgAttr;
         Debug.Log(ca.att);
-        foreach (var item in ca.cfgs)
+        foreach (var item in ca.AllCfgs)
         {
             Debug.Log(item);
         }
+
 
 		World w = World.GetInstance();
 		Entity me = w.GetMe();

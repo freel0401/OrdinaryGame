@@ -894,9 +894,10 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	local className = fword:upper()..bword
 	-- print('#####', bword, className, classNamelower, fword:upper())
 	local tempName = className..'Temp'
-	-- print('####', filename)
+	print('-----MarkCSharpFile---info', filename)
 	dump(colname)
 	dump(tp)
+	print('-----MarkCSharpFile---info----end', filename)
 	local file = io.open(folder..filename, 'w')
 
 	file:write('using System.Collections;\n')
@@ -917,24 +918,17 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	for i, v in ipairs(keys) do
 		file:write('\tpublic '..tempName..' '..v..';\n')
 	end
-	-- 遍历用的字典
-	file:write('\tpublic Dictionary<string, '..tempName..'> cfgs;\n')
+	file:write('\tprivate '..tempName..'[] allcfgs;\n')
+	file:write('\tpublic '..tempName..'[] AllCfgs { get { return allcfgs; } set {} }\n')
 	-- 构造函数
 	file:write('\tpublic void Init()\n')
 	file:write('\t{\n')
-	file:write('\t\tcfgs = new Dictionary<string, '..tempName..'>();\n')
+	file:write('\t\tallcfgs = new '..tempName..'['..#keys..'];\n')
 	for i, v in ipairs(keys) do
-		file:write('\t\tcfgs.Add("'..v..'", '..v..');\n')
+		-- file:write('\t\tallcfgs.Add('..v..');\n')
+		file:write('\t\tallcfgs['..(i-1)..'] = '..v..';\n')
 	end
 	file:write('\t}\n')
-	-- 加载的方法
-	-- file:write('\tstatic public '..className..' GetConf()\n')
-	-- file:write('\t{\n')
-	-- file:write('\t\tvar textFile = Resources.Load<TextAsset>("'..classNamelower..'");\n')
-	-- file:write('\t\t'..className..' data = JsonUtility.FromJson<'..className..'>(textFile.text);\n')
-
-	-- file:write('\t\treturn data;\n')
-	-- file:write('\t}\n')
 
 	file:write('}\n')
 	file:close()
