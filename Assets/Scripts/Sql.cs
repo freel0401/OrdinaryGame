@@ -76,7 +76,7 @@ public class Sql : Singleton<Sql>
     {
         //获取数据表中字段数目
         int fieldCount = SelectAll(tableName).FieldCount;
-        //当插入的数据长度不等于字段数目时引发异常
+        //当插入的数据长度不等于字段数目时引发异常 TODO 使用defaultDB检测 避免频繁查表
         if (values.Length != fieldCount)
         {
             throw new SqliteException("values.Length!=fieldCount");
@@ -96,9 +96,7 @@ public class Sql : Singleton<Sql>
         return ExecuteQuery(queryString);
     }
 
-    /// <summary>
     /// 更新指定数据表内的数据
-    /// </summary>
     /// <returns>The values.</returns>
     /// <param name="tableName">数据表名称</param>
     /// <param name="colNames">字段名</param>
@@ -113,13 +111,29 @@ public class Sql : Singleton<Sql>
             throw new SqliteException("colNames.Length!=colValues.Length");
         }
 
-        string queryString = "UPDATE " + tableName + " SET " + colNames[0] + "=" + colValues[0];
+        // string queryString = "UPDATE " + tableName + " SET " + colNames[0] + "=" + colValues[0];
+        sqlStrings.Clear();
+        sqlStrings.Add("UPDATE ");
+        sqlStrings.Add(tableName);
+        sqlStrings.Add(" SET ");
+        sqlStrings.Add(colNames[0]);
+        sqlStrings.Add("=");
+        sqlStrings.Add(colValues[0]);
         for (int i = 1; i < colValues.Length; i++)
         {
-            queryString += ", " + colNames[i] + "=" + colValues[i];
+            sqlStrings.Add(", ");
+            sqlStrings.Add(colNames[i]);
+            sqlStrings.Add("=");
+            sqlStrings.Add(colValues[i]);
+        //     queryString += ", " + colNames[i] + "=" + colValues[i];
         }
-        queryString += " WHERE " + key + operation + value;
-        return ExecuteQuery(queryString);
+        sqlStrings.Add(" WHERE ");
+        sqlStrings.Add(key);
+        sqlStrings.Add(operation);
+        sqlStrings.Add(value);
+        // TODO 缓存 sql语句
+
+        return ExecuteQuery(buildSql());
     }
 
     /// <summary>
