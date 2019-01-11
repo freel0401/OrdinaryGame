@@ -18,12 +18,13 @@ public class Sql : Singleton<Sql>
 
     private List<string> sqlStrings;
 
-    private string sqlName = "orginarygame";
+    private string sqlName = "orginarygame.db";
     public Sql()
     {
         sqlStrings = new List<string>();
         // TODO 不同平台的区分
-        string connectionString = "data source=" + Application.streamingAssetsPath + "/" + this.sqlName;
+        // string connectionString = "data source=" + Application.streamingAssetsPath + "/" + this.sqlName;
+        string connectionString = "data source=" + Application.dataPath + "/" + this.sqlName;
         //构造数据库连接
         dbConnection = new SqliteConnection(connectionString);
         //打开数据库
@@ -211,17 +212,37 @@ public class Sql : Singleton<Sql>
     /// <param name="colValues">Col values.</param>
     public SqliteDataReader Select(string tableName, string[] items, string[] colNames, string[] operations, string[] colValues)
     {
-        string queryString = "SELECT " + items[0];
+        // string queryString = "SELECT " + items[0];
+        sqlStrings.Clear();
+        sqlStrings.Add("SELECT ");
+        sqlStrings.Add(items[0]);
         for (int i = 1; i < items.Length; i++)
         {
-            queryString += ", " + items[i];
+            // queryString += ", " + items[i];
+            sqlStrings.Add(", ");
+            sqlStrings.Add(items[i]);
         }
-        queryString += " FROM " + tableName + " WHERE " + colNames[0] + " " + operations[0] + " " + colValues[0];
+        sqlStrings.Add(" FROM ");
+        sqlStrings.Add(tableName);
+        sqlStrings.Add(" WHERE ");
+        sqlStrings.Add(colNames[0]);
+        sqlStrings.Add(" ");
+        sqlStrings.Add(operations[0]);
+        sqlStrings.Add(" ");
+        sqlStrings.Add(colValues[0]);
+        // queryString += " FROM " + tableName + " WHERE " + colNames[0] + " " + operations[0] + " " + colValues[0];
         for (int i = 0; i < colNames.Length; i++)
         {
-            queryString += " AND " + colNames[i] + " " + operations[i] + " " + colValues[0] + " ";
+            // queryString += " AND " + colNames[i] + " " + operations[i] + " " + colValues[0] + " ";
+            sqlStrings.Add(" AND ");
+            sqlStrings.Add(colNames[i]);
+            sqlStrings.Add(" ");
+            sqlStrings.Add(operations[i]);
+            sqlStrings.Add(" ");
+            sqlStrings.Add(colValues[0]);
+            sqlStrings.Add(" ");
         }
-        return ExecuteQuery(queryString);
+        return ExecuteQuery(buildSql());
     }
 
     //-----------------工具 构造sql查询字符串

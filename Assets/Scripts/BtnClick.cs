@@ -15,24 +15,28 @@ public class BtnClick : MonoBehaviour {
 
 	}
     public void showText(){
-        var ca = Config.CfgAttr;
-        Debug.Log(ca.att);
-        foreach (var item in ca.AllCfgs)
-        {
-            Debug.Log(item);
-        }
+		var sql = Sql.GetInstance();
+		// sql.CreateTable("test1", new string[]{ "pid", "name" }, new string[]{"int", "string"});
+		sql.Insert("test1", new string[]{ "1", "'大王'"});
+
+        // var ca = Config.CfgAttr;
+        // Debug.Log(ca.att);
+        // foreach (var item in ca.AllCfgs)
+        // {
+        //     Debug.Log(item);
+        // }
 
 
-		World w = World.GetInstance();
-		Entity me = w.GetMe();
-		me.ResetHp();
-		Entity mon = w.AddMonster();
-		FightSys f = FightSys.GetInstance();
-		f.AddFightEntityId(mon.Guid);
-		f.AddFightEntityId(me.Guid);
-		mon.Fight.Camp = 0;
-		me.Fight.Camp = 1;
-		f.BeginFight();
+		// World w = World.GetInstance();
+		// Entity me = w.GetMe();
+		// me.ResetHp();
+		// Entity mon = w.AddMonster();
+		// FightSys f = FightSys.GetInstance();
+		// f.AddFightEntityId(mon.Guid);
+		// f.AddFightEntityId(me.Guid);
+		// mon.Fight.Camp = 0;
+		// me.Fight.Camp = 1;
+		// f.BeginFight();
 	}
 
 	public void Click()
