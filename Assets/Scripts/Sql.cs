@@ -24,7 +24,14 @@ public class Sql : Singleton<Sql>
         sqlStrings = new List<string>();
         // TODO 不同平台的区分
         // string connectionString = "data source=" + Application.streamingAssetsPath + "/" + this.sqlName;
-        string connectionString = "data source=" + Application.dataPath + "/" + this.sqlName;
+        string connectionString;
+
+        // #if UNITY_STANDALONE_WIN
+        connectionString = "data source=" + Application.dataPath + "/" + this.sqlName;
+        // #elif UNITY_EDITOR_OSX
+        // #elif UNITY_ANDROID
+        // #elif  UNITY_IOS
+        // #endif
         //构造数据库连接
         dbConnection = new SqliteConnection(connectionString);
         //打开数据库
