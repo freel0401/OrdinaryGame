@@ -27,7 +27,8 @@ public class Sql : Singleton<Sql>
         string connectionString;
 
         // #if UNITY_STANDALONE_WIN
-        connectionString = "data source=" + Application.dataPath + "/" + this.sqlName;
+        // connectionString = "data source=" + Application.dataPath + "/" + this.sqlName;
+        connectionString = "data source=" + Application.persistentDataPath + "/" + sqlName;
         // #elif UNITY_EDITOR_OSX
         // #elif UNITY_ANDROID
         // #elif  UNITY_IOS

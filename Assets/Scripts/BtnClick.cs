@@ -16,7 +16,7 @@ public class BtnClick : MonoBehaviour {
 	}
     public void showText(){
 		var sql = Sql.GetInstance();
-		// sql.CreateTable("test1", new string[]{ "pid", "name" }, new string[]{"int", "string"});
+		sql.CreateTable("test1", new string[]{ "pid", "name" }, new string[]{"int", "string"});
 		sql.Insert("test1", new string[]{ "1", "'大王'"});
 
         // var ca = Config.CfgAttr;
