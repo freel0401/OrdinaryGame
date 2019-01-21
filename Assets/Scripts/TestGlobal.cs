@@ -6,6 +6,11 @@ public class TestGlobal : MonoBehaviour
 {
     void onStart()
     { }
+
+    void Awake()
+    {
+        Global.InitSql();
+    }
     private void OnApplicationQuit()
     {
         //当程序退出时关闭数据库连接，不然会重复打开数据卡，造成卡顿
@@ -18,6 +23,8 @@ public class TestGlobal : MonoBehaviour
 public class Global
 {
     static int guid = 0;
+
+    static Sql sql;
     static public StringBuilder stringBuilder = new StringBuilder();
     static public StringBuilder GetStringBuilder()
     {
@@ -35,6 +42,11 @@ public class Global
             sb.Append(str);
         }
         return sb.ToString();
+    }
+
+    static public void InitSql()
+    {
+        sql = Sql.GetInstance();
     }
 
     static public int GetGuid()

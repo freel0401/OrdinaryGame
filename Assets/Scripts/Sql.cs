@@ -6,9 +6,19 @@ using System.IO;
 using Mono.Data.Sqlite;
 using System.Text;
 
-public class Sql : Singleton<Sql>
+public class Sql
 {
 
+    private static Sql _instance;
+    public static Sql GetInstance()
+    {
+        if (_instance == null)
+        {
+            Debug.Log("Create " + typeof(Sql).ToString() + " singleton...");
+            _instance = new Sql();
+        }
+        return _instance;
+    }
     // 数据库连接定义
     private SqliteConnection dbConnection;
     // SQL命令定义
@@ -23,29 +33,34 @@ public class Sql : Singleton<Sql>
 
     private string getSqlPath()
     {
-        string connectionString;
+        string sqlFilePath;
 
         // #if UNITY_STANDALONE_WIN
         #if UNITY_EDITOR
-            connectionString = "data source=" + Application.dataPath + "/" + sqlName;
+            sqlFilePath = Application.dataPath + "/" + sqlName;
         #else
-            connectionString = "data source=" + Application.persistentDataPath + "/" + sqlName;
+            sqlFilePath = Application.persistentDataPath + "/" + sqlName;
         // #elif UNITY_EDITOR_OSX
         // #elif UNITY_ANDROID
         // #elif  UNITY_IOS
         #endif
-        return connectionString;
+        return sqlFilePath;
     }
     public Sql()
     {
         sqlStrings = new List<string>();
-        string connectionString = getSqlPath();
+        string sqlFilePath = getSqlPath();
 
+        bool needInit = File.Exists(sqlFilePath);
+
+        // if (!File.Exists(sqlFilePath))
+        //     needInit = true;
         //构造数据库连接
-        dbConnection = new SqliteConnection(connectionString);
+        dbConnection = new SqliteConnection("data source=" + sqlFilePath);
         //打开数据库
         dbConnection.Open();
-        // initDB();
+        if (needInit!=true)
+            initDB();
     }
 
     // 执行SQL命令

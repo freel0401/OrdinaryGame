@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FightSys : SingletonMB<FightSys>
+public class FightSys : MonoSingleton<FightSys>
 {
     bool fighting; //是否战斗中
     float pauseTime;

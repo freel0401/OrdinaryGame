@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIFunc : SingletonMB<UIFunc>
+public class UIFunc : MonoSingleton<UIFunc>
 {
 
     // Use this for initialization
