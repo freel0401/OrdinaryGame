@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Data;
+using System.IO;
 using Mono.Data.Sqlite;
 using System.Text;
 
@@ -19,24 +20,32 @@ public class Sql : Singleton<Sql>
     private List<string> sqlStrings;
 
     private string sqlName = "orginarygame.db";
-    public Sql()
+
+    private string getSqlPath()
     {
-        sqlStrings = new List<string>();
-        // TODO 不同平台的区分
-        // string connectionString = "data source=" + Application.streamingAssetsPath + "/" + this.sqlName;
         string connectionString;
 
         // #if UNITY_STANDALONE_WIN
-        // connectionString = "data source=" + Application.dataPath + "/" + this.sqlName;
-        connectionString = "data source=" + Application.persistentDataPath + "/" + sqlName;
+        #if UNITY_EDITOR
+            connectionString = "data source=" + Application.dataPath + "/" + sqlName;
+        #else
+            connectionString = "data source=" + Application.persistentDataPath + "/" + sqlName;
         // #elif UNITY_EDITOR_OSX
         // #elif UNITY_ANDROID
         // #elif  UNITY_IOS
-        // #endif
+        #endif
+        return connectionString;
+    }
+    public Sql()
+    {
+        sqlStrings = new List<string>();
+        string connectionString = getSqlPath();
+
         //构造数据库连接
         dbConnection = new SqliteConnection(connectionString);
         //打开数据库
         dbConnection.Open();
+        // initDB();
     }
 
     // 执行SQL命令
@@ -271,6 +280,15 @@ public class Sql : Singleton<Sql>
             stringBuilder.Append(sqlStrings[i]);
         }
         return stringBuilder.ToString();
+    }
+
+    public void initDB()
+    {
+        string dbScriptsPath = "table.sql";
+        // var textFile = Resources.Load<TextAsset>(dbScriptsPath);
+		string textFile = File.ReadAllText("Assets\\Resources\\"+dbScriptsPath);
+        Debug.Log(textFile);
+        ExecuteQuery(textFile);
     }
 
     // ---------------------
