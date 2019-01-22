@@ -13,21 +13,37 @@ public class EntityFight
 
     public int IdleTime { get { return idleTime; } set { idleTime = value; } }
 
-    public bool Fired { get { return fired; } set { fired = value; } }
+    public void Fire()
+    {
+        fired = true;
+    }
 
-    public int TargetGuid { get { return targetGuid; } set { targetGuid = value; } }
+    public void ClearFireFlag()
+    {
+        fired = false;
+    }
+
+    public bool isFired()
+    {
+        return fired;
+    }
 
     public int Camp { get { return camp;} set {camp = value;} }
 
     public void Init()
     {
         idleTime = 0;
-        fired = false;
+        ClearFireFlag();
     }
 
 	public void SetTarget(int tarGuid)
 	{
 		targetGuid = tarGuid;
 	}
+
+    public int GetTarGuid()
+    {
+        return targetGuid;
+    }
 
 }

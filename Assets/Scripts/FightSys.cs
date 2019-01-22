@@ -8,6 +8,7 @@ public class FightSys : MonoSingleton<FightSys>
     float pauseTime;
     ArrayList entityGuids; //参与战斗的角色GUID列表
     SortEntityBySpeed sortBySpeed;//比较速度的排序回调方法
+
     void Awake()
     {
         fighting = false;
@@ -32,11 +33,10 @@ public class FightSys : MonoSingleton<FightSys>
         entityGuids.Clear();
         //TEST
         UIFunc.GetInstance().AddMessage("战斗结束");
-        Debug.Log("EndFight");
     }
 
     //寻找目标
-    void findTarget(Entity e)
+    private void findTarget(Entity e)
     {
         int myGuid = e.Guid;
         int myCamp = e.Fight.Camp;
@@ -55,7 +55,7 @@ public class FightSys : MonoSingleton<FightSys>
     }
 
     //计算伤害
-    int calculateDamage(Entity src, Entity tar)
+    private int calculateDamage(Entity src, Entity tar)
     {
         int srcAtk = src.GetAttr(ATTRS.ATT);
         int tarDef = tar.GetAttr(ATTRS.DEF);
@@ -64,17 +64,17 @@ public class FightSys : MonoSingleton<FightSys>
     }
 
     //角色攻击
-    void entityFire(Entity src)
+    private void entityFire(Entity src)
     {
-        int tarGuid = src.Fight.TargetGuid;
+        int tarGuid = src.Fight.GetTarGuid();
         Entity tar = World.GetInstance().GetEntity(tarGuid);
         if (tar != null)
         {
+            src.Fight.Fire();
             int damage = calculateDamage(src, tar);
             if (damage!=0)
             {
                 tar.ModifyHp(damage);
-                src.Fight.Fired = true;
                 if (tar.GetAttr(ATTRS.HP)<=0)
                 {
                     EndFight();
@@ -99,7 +99,7 @@ public class FightSys : MonoSingleton<FightSys>
     }
 
     //战斗主循环
-    void FrameFight()
+    private void FrameFight()
     {
         pauseTime -= Time.deltaTime;
         if (pauseTime>=0)
@@ -113,7 +113,7 @@ public class FightSys : MonoSingleton<FightSys>
         {
             var e = World.GetInstance().GetEntity(id);
             Debug.Log("-------------FrameFight---" + e.Name + id);
-            if (!e.Fight.Fired)
+            if (!e.Fight.isFired())
             {
                 entityFire(e);
                 pauseTime = 1;
@@ -126,7 +126,7 @@ public class FightSys : MonoSingleton<FightSys>
             foreach (int id in entityGuids)
             {
                 var e = World.GetInstance().GetEntity(id);
-                e.Fight.Fired = false;
+                e.Fight.ClearFireFlag();
             }
         }
     }
