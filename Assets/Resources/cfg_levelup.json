@@ -1,0 +1,502 @@
+{
+"lv1" : {
+"exp" : 14390,
+"index" : "lv1",
+"level" : 1
+},
+"lv10" : {
+"exp" : 650960,
+"index" : "lv10",
+"level" : 10
+},
+"lv100" : {
+"exp" : 772432750,
+"index" : "lv100",
+"level" : 100
+},
+"lv11" : {
+"exp" : 804410,
+"index" : "lv11",
+"level" : 11
+},
+"lv12" : {
+"exp" : 979670,
+"index" : "lv12",
+"level" : 12
+},
+"lv13" : {
+"exp" : 1178190,
+"index" : "lv13",
+"level" : 13
+},
+"lv14" : {
+"exp" : 1401410,
+"index" : "lv14",
+"level" : 14
+},
+"lv15" : {
+"exp" : 1650760,
+"index" : "lv15",
+"level" : 15
+},
+"lv16" : {
+"exp" : 1927680,
+"index" : "lv16",
+"level" : 16
+},
+"lv17" : {
+"exp" : 2233610,
+"index" : "lv17",
+"level" : 17
+},
+"lv18" : {
+"exp" : 2569990,
+"index" : "lv18",
+"level" : 18
+},
+"lv19" : {
+"exp" : 2938260,
+"index" : "lv19",
+"level" : 19
+},
+"lv2" : {
+"exp" : 36210,
+"index" : "lv2",
+"level" : 2
+},
+"lv20" : {
+"exp" : 3339860,
+"index" : "lv20",
+"level" : 20
+},
+"lv21" : {
+"exp" : 3776220,
+"index" : "lv21",
+"level" : 21
+},
+"lv22" : {
+"exp" : 4248790,
+"index" : "lv22",
+"level" : 22
+},
+"lv23" : {
+"exp" : 4759000,
+"index" : "lv23",
+"level" : 23
+},
+"lv24" : {
+"exp" : 5308290,
+"index" : "lv24",
+"level" : 24
+},
+"lv25" : {
+"exp" : 5898100,
+"index" : "lv25",
+"level" : 25
+},
+"lv26" : {
+"exp" : 6529870,
+"index" : "lv26",
+"level" : 26
+},
+"lv27" : {
+"exp" : 7205030,
+"index" : "lv27",
+"level" : 27
+},
+"lv28" : {
+"exp" : 7925030,
+"index" : "lv28",
+"level" : 28
+},
+"lv29" : {
+"exp" : 8691300,
+"index" : "lv29",
+"level" : 29
+},
+"lv3" : {
+"exp" : 66900,
+"index" : "lv3",
+"level" : 3
+},
+"lv30" : {
+"exp" : 509505290,
+"index" : "lv30",
+"level" : 30
+},
+"lv31" : {
+"exp" : 510368430,
+"index" : "lv31",
+"level" : 31
+},
+"lv32" : {
+"exp" : 511282160,
+"index" : "lv32",
+"level" : 32
+},
+"lv33" : {
+"exp" : 512247910,
+"index" : "lv33",
+"level" : 33
+},
+"lv34" : {
+"exp" : 513267130,
+"index" : "lv34",
+"level" : 34
+},
+"lv35" : {
+"exp" : 514341250,
+"index" : "lv35",
+"level" : 35
+},
+"lv36" : {
+"exp" : 515471720,
+"index" : "lv36",
+"level" : 36
+},
+"lv37" : {
+"exp" : 516659970,
+"index" : "lv37",
+"level" : 37
+},
+"lv38" : {
+"exp" : 517907440,
+"index" : "lv38",
+"level" : 38
+},
+"lv39" : {
+"exp" : 519215570,
+"index" : "lv39",
+"level" : 39
+},
+"lv4" : {
+"exp" : 107900,
+"index" : "lv4",
+"level" : 4
+},
+"lv40" : {
+"exp" : 520585800,
+"index" : "lv40",
+"level" : 40
+},
+"lv41" : {
+"exp" : 522019560,
+"index" : "lv41",
+"level" : 41
+},
+"lv42" : {
+"exp" : 523518300,
+"index" : "lv42",
+"level" : 42
+},
+"lv43" : {
+"exp" : 525083450,
+"index" : "lv43",
+"level" : 43
+},
+"lv44" : {
+"exp" : 526716460,
+"index" : "lv44",
+"level" : 44
+},
+"lv45" : {
+"exp" : 528418760,
+"index" : "lv45",
+"level" : 45
+},
+"lv46" : {
+"exp" : 530191790,
+"index" : "lv46",
+"level" : 46
+},
+"lv47" : {
+"exp" : 532036980,
+"index" : "lv47",
+"level" : 47
+},
+"lv48" : {
+"exp" : 533955780,
+"index" : "lv48",
+"level" : 48
+},
+"lv49" : {
+"exp" : 535949620,
+"index" : "lv49",
+"level" : 49
+},
+"lv5" : {
+"exp" : 160650,
+"index" : "lv5",
+"level" : 5
+},
+"lv50" : {
+"exp" : 538019950,
+"index" : "lv50",
+"level" : 50
+},
+"lv51" : {
+"exp" : 540168200,
+"index" : "lv51",
+"level" : 51
+},
+"lv52" : {
+"exp" : 542395810,
+"index" : "lv52",
+"level" : 52
+},
+"lv53" : {
+"exp" : 544704220,
+"index" : "lv53",
+"level" : 53
+},
+"lv54" : {
+"exp" : 547094870,
+"index" : "lv54",
+"level" : 54
+},
+"lv55" : {
+"exp" : 549569190,
+"index" : "lv55",
+"level" : 55
+},
+"lv56" : {
+"exp" : 552128630,
+"index" : "lv56",
+"level" : 56
+},
+"lv57" : {
+"exp" : 554774620,
+"index" : "lv57",
+"level" : 57
+},
+"lv58" : {
+"exp" : 557508600,
+"index" : "lv58",
+"level" : 58
+},
+"lv59" : {
+"exp" : 560332010,
+"index" : "lv59",
+"level" : 59
+},
+"lv6" : {
+"exp" : 226580,
+"index" : "lv6",
+"level" : 6
+},
+"lv60" : {
+"exp" : 563246290,
+"index" : "lv60",
+"level" : 60
+},
+"lv61" : {
+"exp" : 566252880,
+"index" : "lv61",
+"level" : 61
+},
+"lv62" : {
+"exp" : 569353220,
+"index" : "lv62",
+"level" : 62
+},
+"lv63" : {
+"exp" : 572548740,
+"index" : "lv63",
+"level" : 63
+},
+"lv64" : {
+"exp" : 575840880,
+"index" : "lv64",
+"level" : 64
+},
+"lv65" : {
+"exp" : 579231090,
+"index" : "lv65",
+"level" : 65
+},
+"lv66" : {
+"exp" : 582720800,
+"index" : "lv66",
+"level" : 66
+},
+"lv67" : {
+"exp" : 586311450,
+"index" : "lv67",
+"level" : 67
+},
+"lv68" : {
+"exp" : 590004470,
+"index" : "lv68",
+"level" : 68
+},
+"lv69" : {
+"exp" : 593801310,
+"index" : "lv69",
+"level" : 69
+},
+"lv7" : {
+"exp" : 307140,
+"index" : "lv7",
+"level" : 7
+},
+"lv70" : {
+"exp" : 597703400,
+"index" : "lv70",
+"level" : 70
+},
+"lv71" : {
+"exp" : 601712190,
+"index" : "lv71",
+"level" : 71
+},
+"lv72" : {
+"exp" : 605829110,
+"index" : "lv72",
+"level" : 72
+},
+"lv73" : {
+"exp" : 610055600,
+"index" : "lv73",
+"level" : 73
+},
+"lv74" : {
+"exp" : 614393100,
+"index" : "lv74",
+"level" : 74
+},
+"lv75" : {
+"exp" : 618843050,
+"index" : "lv75",
+"level" : 75
+},
+"lv76" : {
+"exp" : 623406880,
+"index" : "lv76",
+"level" : 76
+},
+"lv77" : {
+"exp" : 628086040,
+"index" : "lv77",
+"level" : 77
+},
+"lv78" : {
+"exp" : 632881960,
+"index" : "lv78",
+"level" : 78
+},
+"lv79" : {
+"exp" : 639796080,
+"index" : "lv79",
+"level" : 79
+},
+"lv8" : {
+"exp" : 403760,
+"index" : "lv8",
+"level" : 8
+},
+"lv80" : {
+"exp" : 647346720,
+"index" : "lv80",
+"level" : 80
+},
+"lv81" : {
+"exp" : 655078980,
+"index" : "lv81",
+"level" : 81
+},
+"lv82" : {
+"exp" : 662995020,
+"index" : "lv82",
+"level" : 82
+},
+"lv83" : {
+"exp" : 668354140,
+"index" : "lv83",
+"level" : 83
+},
+"lv84" : {
+"exp" : 673795490,
+"index" : "lv84",
+"level" : 84
+},
+"lv85" : {
+"exp" : 679319560,
+"index" : "lv85",
+"level" : 85
+},
+"lv86" : {
+"exp" : 684926830,
+"index" : "lv86",
+"level" : 86
+},
+"lv87" : {
+"exp" : 690617770,
+"index" : "lv87",
+"level" : 87
+},
+"lv88" : {
+"exp" : 696392870,
+"index" : "lv88",
+"level" : 88
+},
+"lv89" : {
+"exp" : 702252600,
+"index" : "lv89",
+"level" : 89
+},
+"lv9" : {
+"exp" : 517890,
+"index" : "lv9",
+"level" : 9
+},
+"lv90" : {
+"exp" : 708197450,
+"index" : "lv90",
+"level" : 90
+},
+"lv91" : {
+"exp" : 714227890,
+"index" : "lv91",
+"level" : 91
+},
+"lv92" : {
+"exp" : 720344410,
+"index" : "lv92",
+"level" : 92
+},
+"lv93" : {
+"exp" : 726547480,
+"index" : "lv93",
+"level" : 93
+},
+"lv94" : {
+"exp" : 732837580,
+"index" : "lv94",
+"level" : 94
+},
+"lv95" : {
+"exp" : 739215200,
+"index" : "lv95",
+"level" : 95
+},
+"lv96" : {
+"exp" : 745680810,
+"index" : "lv96",
+"level" : 96
+},
+"lv97" : {
+"exp" : 752234890,
+"index" : "lv97",
+"level" : 97
+},
+"lv98" : {
+"exp" : 758877920,
+"index" : "lv98",
+"level" : 98
+},
+"lv99" : {
+"exp" : 765610380,
+"index" : "lv99",
+"level" : 99
+}
+}

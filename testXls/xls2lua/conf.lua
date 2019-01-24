@@ -6,6 +6,7 @@ return {
     -- 待转换的Excel文件名
     xlsFileList = {
         --------------- 属性、角色相关
-        "attribute.xls", -- 属性
+        -- "attribute.xls", -- 属性
+        "levelup.xls", -- 属性
     }
 }

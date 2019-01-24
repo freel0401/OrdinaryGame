@@ -563,6 +563,7 @@ end
 
 --- 读取一个Sheet，返回总行数，服务器端数据表，客户端数据表 （简单单元格）
 local function ExcelReadSheet(excel, sheet, name, clipath, svrpath)
+	print('~~@ExcelReadSheet@~~', clipath)
 	commentMsg = ''
 	local svr, client, colcount, i, rowcount, tp, colname = {},{}
 	sheetcache = sheet
@@ -895,8 +896,10 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	-- print('#####', bword, className, classNamelower, fword:upper())
 	local tempName = className..'Temp'
 	print('-----MarkCSharpFile---info', filename)
-	dump(colname)
-	dump(tp)
+	-- dump(colname)
+	-- dump(tp)
+	-- table.sort( keys )
+	dump(keys)
 	print('-----MarkCSharpFile---info----end', filename)
 	local file = io.open(folder..filename, 'w')
 
@@ -1216,4 +1219,4 @@ table.push(textks, false, false)
 
 
 print('\n======= END ========')
-os.exit()
+-- os.exit()
