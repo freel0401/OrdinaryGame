@@ -896,10 +896,24 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	-- print('#####', bword, className, classNamelower, fword:upper())
 	local tempName = className..'Temp'
 	print('-----MarkCSharpFile---info', filename)
-	-- dump(colname)
-	-- dump(tp)
+	dump(colname)
+	dump(tp)
 	-- table.sort( keys )
 	dump(keys)
+	local writeKeys = keys
+	local isIntKey = nil
+	for i, v in inext, tp do
+		if v.attr:find('p') and v.type == 'i' then
+			isIntKey = colname[i]
+			break
+		end
+	end
+	if isIntKey then
+		writeKeys = {}
+		for i, v in inext, keys do
+			writeKeys[i] = isIntKey..v
+		end
+	end
 	print('-----MarkCSharpFile---info----end', filename)
 	local file = io.open(folder..filename, 'w')
 
@@ -918,7 +932,7 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	file:write('[System.Serializable]\n')
 	file:write('public class '..className..' : ConfBase\n')
 	file:write('{\n')
-	for i, v in ipairs(keys) do
+	for i, v in ipairs(writeKeys) do
 		file:write('\tpublic '..tempName..' '..v..';\n')
 	end
 	file:write('\tprivate '..tempName..'[] allcfgs;\n')
@@ -927,7 +941,7 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	file:write('\tpublic void Init()\n')
 	file:write('\t{\n')
 	file:write('\t\tallcfgs = new '..tempName..'['..#keys..'];\n')
-	for i, v in ipairs(keys) do
+	for i, v in ipairs(writeKeys) do
 		-- file:write('\t\tallcfgs.Add('..v..');\n')
 		file:write('\t\tallcfgs['..(i-1)..'] = '..v..';\n')
 	end

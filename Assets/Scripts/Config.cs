@@ -15,7 +15,7 @@ public class Config
             if (cfg_attr == null)
             {
                 cfg_attr = ConfBase.GetConf<Cfg_attr>("cfg_attr");
-                cfg_attr.Init();
+                // cfg_attr.Init();
             }
             return cfg_attr;
         }
