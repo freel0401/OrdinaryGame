@@ -604,7 +604,7 @@ end
 
 local forks0 = { [0]=0 }
 --- 序列化
-local function serialize(o, file, deep, forks, fork)
+local function serialize(o, file, deep, forks, fork, pkdatas)
 	if type(o) == "number" then
 		file:write(('%.12g'):format(o))
 	elseif type(o) == "string" then
@@ -618,7 +618,7 @@ local function serialize(o, file, deep, forks, fork)
 		file:write(o and 'true' or 'false')
 	elseif type(o) == "table" then
 		local isIntTable = table.isIntTable(o)
-		if isIntTable then
+		if isIntTable and deep~=1 then
 			file:write("[\n")
 		else
 			file:write("{\n")
@@ -640,6 +640,15 @@ local function serialize(o, file, deep, forks, fork)
 			local v,k = o[tn[j]],tn[j]
 			if type(k) == 'number' then -- 数字
 				-- file:write(" [",k,"] : ")
+				if deep == 1 and pkdatas then
+					local pkdata = pkdatas[pkdatas.pk]
+					if pkdata.type == 'i' then
+						-- print('serialize number----', k, v, deep)
+						-- dump(pkdatas)
+						file:write( ('%q'):format(pkdatas.pkname..k), " : ")
+					end
+
+				end
 			elseif type(k) == 'string' and string.find(k,'^[a-zA-Z_][a-zA-Z0-9_]*$') then -- 正常变量
 				file:write( ('%q'):format(k), " : ")
 			else -- 其他字符
@@ -669,7 +678,7 @@ local function serialize(o, file, deep, forks, fork)
 		-- else
 		-- 	file:write("}\n")
 		-- end
-		if isIntTable then
+		if isIntTable  and deep~=1 then
 			file:write("]")
 		else
 			file:write("}")
@@ -896,10 +905,10 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	-- print('#####', bword, className, classNamelower, fword:upper())
 	local tempName = className..'Temp'
 	print('-----MarkCSharpFile---info', filename)
-	dump(colname)
-	dump(tp)
+	-- dump(colname)
+	-- dump(tp)
 	-- table.sort( keys )
-	dump(keys)
+	-- dump(keys)
 	local writeKeys = keys
 	local isIntKey = nil
 	for i, v in inext, tp do
@@ -914,7 +923,7 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 			writeKeys[i] = isIntKey..v
 		end
 	end
-	print('-----MarkCSharpFile---info----end', filename)
+	print('-----MarkCSharpFile---info----end', folder, filename)
 	local file = io.open(folder..filename, 'w')
 
 	file:write('using System.Collections;\n')
@@ -937,13 +946,29 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	end
 	file:write('\tprivate '..tempName..'[] allcfgs;\n')
 	file:write('\tpublic '..tempName..'[] AllCfgs { get { return allcfgs; } set {} }\n')
+
+	-- 处理数字索引的问题
+	if isIntKey then
+		file:write('\tprivate Dictionary<int, int> mapKeys;\n')
+		file:write('\tpublic '..tempName..' this[int '..isIntKey..']\n')
+		file:write('\t{\n\t\tget{\n')
+		file:write('\t\t\tint key = mapKeys['..isIntKey..'];\n')
+		file:write('\t\t\treturn allcfgs[key];\n')
+		file:write('\t\t}\n\t\tset{}\n\t}\n')
+	end
 	-- 构造函数
 	file:write('\tpublic void Init()\n')
 	file:write('\t{\n')
+	if isIntKey then
+		file:write('\t\tmapKeys = new Dictionary<int, int>();\n')
+	end
 	file:write('\t\tallcfgs = new '..tempName..'['..#keys..'];\n')
 	for i, v in ipairs(writeKeys) do
 		-- file:write('\t\tallcfgs.Add('..v..');\n')
 		file:write('\t\tallcfgs['..(i-1)..'] = '..v..';\n')
+		if isIntKey then
+			file:write('\t\tmapKeys['..keys[i]..'] = '..(i-1)..';\n')
+		end
 	end
 	file:write('\t}\n')
 
@@ -954,7 +979,7 @@ end
 --- 转换一个Excel文件为对应的Server、Client端Lua和Server端SQL文件
 
 local d = {}
-local function convert(excel, sheets, cliPath, svrPath, name )
+local function convert(excel, sheets, cliPath, svrPath, configCSharpPath )
 	print("\n===================== Convert starting:"..excel)
 	local svrdata,clidata,svrfile,clifile,dbfile,svrtp,clitp, pks = {},{},{},{},{},{},{},{}
 	local forks, svrsheetnames, clisheetnames = {}, {}, {}
@@ -1016,7 +1041,7 @@ local function convert(excel, sheets, cliPath, svrPath, name )
 		print('------------file', clifile[i], (os.info.cconf or cliPath), '~')
 		local csData = csharpData[clifile[i]]
 		-- dump(table.keys(clidata[i]) )
-		MarkCSharpFile(clifile[i], csData, (os.info.cconf or cliPath))
+		MarkCSharpFile(clifile[i], csData, configCSharpPath)
 		-- dump(clifile)
 		if not loadfeast then --or ret1 == nil or ret1 == false then
 			out = os.info.sconf and { write=assert, close=assert } or assert(io.open(file, 'wb'))
@@ -1027,7 +1052,8 @@ local function convert(excel, sheets, cliPath, svrPath, name )
 			-- out:write('_G.'..cliname..' = { \n')
 			-- out:write('{\n')
 			-- dump(clidata[i])
-			serialize(clidata[i], out, 1, forks[clifile[i]])
+			-- dump(csData)
+			serialize(clidata[i], out, 1, forks[clifile[i]], nil, csData.tp)
 			-- out:write(", '"..pks[i].."' }")
 			out:close()
 			print(file, ' client side configure file created ')
@@ -1064,7 +1090,7 @@ function _G.convertAll()
 		all[i] = t
 	end
 	for i, xls in ipairs(xlss) do
-		convert(xls, all[i], conf.clientConfigPath, conf.serverConfigPath, n)
+		convert(xls, all[i], conf.clientConfigPath, conf.serverConfigPath, conf.configCSharpPath)
 	end
 end
 

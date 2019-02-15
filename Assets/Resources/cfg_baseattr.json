@@ -1,5 +1,5 @@
-[
 {
+"lv1" : {
 "att" : 80,
 "cri" : 20,
 "criValue" : 0,
@@ -15,7 +15,7 @@
 "subDamage" : 12,
 "subDef" : 16
 },
-{
+"lv2" : {
 "att" : 86,
 "cri" : 22,
 "criValue" : 0,
@@ -31,7 +31,7 @@
 "subDamage" : 13,
 "subDef" : 17
 },
-{
+"lv3" : {
 "att" : 92,
 "cri" : 23,
 "criValue" : 0,
@@ -47,7 +47,7 @@
 "subDamage" : 14,
 "subDef" : 18
 },
-{
+"lv4" : {
 "att" : 98,
 "cri" : 25,
 "criValue" : 0,
@@ -63,7 +63,7 @@
 "subDamage" : 15,
 "subDef" : 20
 },
-{
+"lv5" : {
 "att" : 104,
 "cri" : 26,
 "criValue" : 0,
@@ -79,7 +79,7 @@
 "subDamage" : 16,
 "subDef" : 21
 },
-{
+"lv6" : {
 "att" : 110,
 "cri" : 28,
 "criValue" : 0,
@@ -95,7 +95,7 @@
 "subDamage" : 17,
 "subDef" : 22
 },
-{
+"lv7" : {
 "att" : 116,
 "cri" : 29,
 "criValue" : 0,
@@ -111,7 +111,7 @@
 "subDamage" : 17,
 "subDef" : 23
 },
-{
+"lv8" : {
 "att" : 122,
 "cri" : 31,
 "criValue" : 0,
@@ -127,7 +127,7 @@
 "subDamage" : 18,
 "subDef" : 24
 },
-{
+"lv9" : {
 "att" : 128,
 "cri" : 32,
 "criValue" : 0,
@@ -143,7 +143,7 @@
 "subDamage" : 19,
 "subDef" : 26
 },
-{
+"lv10" : {
 "att" : 134,
 "cri" : 34,
 "criValue" : 0,
@@ -159,7 +159,7 @@
 "subDamage" : 20,
 "subDef" : 27
 },
-{
+"lv11" : {
 "att" : 140,
 "cri" : 35,
 "criValue" : 0,
@@ -175,7 +175,7 @@
 "subDamage" : 21,
 "subDef" : 28
 },
-{
+"lv12" : {
 "att" : 146,
 "cri" : 37,
 "criValue" : 0,
@@ -191,7 +191,7 @@
 "subDamage" : 22,
 "subDef" : 29
 },
-{
+"lv13" : {
 "att" : 152,
 "cri" : 38,
 "criValue" : 0,
@@ -207,7 +207,7 @@
 "subDamage" : 23,
 "subDef" : 30
 },
-{
+"lv14" : {
 "att" : 158,
 "cri" : 40,
 "criValue" : 0,
@@ -223,7 +223,7 @@
 "subDamage" : 24,
 "subDef" : 32
 },
-{
+"lv15" : {
 "att" : 164,
 "cri" : 41,
 "criValue" : 0,
@@ -239,7 +239,7 @@
 "subDamage" : 25,
 "subDef" : 33
 },
-{
+"lv16" : {
 "att" : 170,
 "cri" : 43,
 "criValue" : 0,
@@ -255,7 +255,7 @@
 "subDamage" : 26,
 "subDef" : 34
 },
-{
+"lv17" : {
 "att" : 176,
 "cri" : 44,
 "criValue" : 0,
@@ -271,7 +271,7 @@
 "subDamage" : 26,
 "subDef" : 35
 },
-{
+"lv18" : {
 "att" : 182,
 "cri" : 46,
 "criValue" : 0,
@@ -287,7 +287,7 @@
 "subDamage" : 27,
 "subDef" : 36
 },
-{
+"lv19" : {
 "att" : 188,
 "cri" : 47,
 "criValue" : 0,
@@ -303,7 +303,7 @@
 "subDamage" : 28,
 "subDef" : 38
 },
-{
+"lv20" : {
 "att" : 194,
 "cri" : 49,
 "criValue" : 0,
@@ -319,7 +319,7 @@
 "subDamage" : 29,
 "subDef" : 39
 },
-{
+"lv21" : {
 "att" : 200,
 "cri" : 50,
 "criValue" : 0,
@@ -335,7 +335,7 @@
 "subDamage" : 30,
 "subDef" : 40
 },
-{
+"lv22" : {
 "att" : 206,
 "cri" : 52,
 "criValue" : 0,
@@ -351,7 +351,7 @@
 "subDamage" : 31,
 "subDef" : 41
 },
-{
+"lv23" : {
 "att" : 212,
 "cri" : 53,
 "criValue" : 0,
@@ -367,7 +367,7 @@
 "subDamage" : 32,
 "subDef" : 42
 },
-{
+"lv24" : {
 "att" : 218,
 "cri" : 55,
 "criValue" : 0,
@@ -383,7 +383,7 @@
 "subDamage" : 33,
 "subDef" : 44
 },
-{
+"lv25" : {
 "att" : 224,
 "cri" : 56,
 "criValue" : 0,
@@ -399,7 +399,7 @@
 "subDamage" : 34,
 "subDef" : 45
 },
-{
+"lv26" : {
 "att" : 230,
 "cri" : 58,
 "criValue" : 0,
@@ -415,7 +415,7 @@
 "subDamage" : 35,
 "subDef" : 46
 },
-{
+"lv27" : {
 "att" : 236,
 "cri" : 59,
 "criValue" : 0,
@@ -431,7 +431,7 @@
 "subDamage" : 35,
 "subDef" : 47
 },
-{
+"lv28" : {
 "att" : 242,
 "cri" : 61,
 "criValue" : 0,
@@ -447,7 +447,7 @@
 "subDamage" : 36,
 "subDef" : 48
 },
-{
+"lv29" : {
 "att" : 248,
 "cri" : 62,
 "criValue" : 0,
@@ -463,7 +463,7 @@
 "subDamage" : 37,
 "subDef" : 50
 },
-{
+"lv30" : {
 "att" : 254,
 "cri" : 64,
 "criValue" : 0,
@@ -479,7 +479,7 @@
 "subDamage" : 38,
 "subDef" : 51
 },
-{
+"lv31" : {
 "att" : 260,
 "cri" : 65,
 "criValue" : 0,
@@ -495,7 +495,7 @@
 "subDamage" : 39,
 "subDef" : 52
 },
-{
+"lv32" : {
 "att" : 266,
 "cri" : 67,
 "criValue" : 0,
@@ -511,7 +511,7 @@
 "subDamage" : 40,
 "subDef" : 53
 },
-{
+"lv33" : {
 "att" : 272,
 "cri" : 68,
 "criValue" : 0,
@@ -527,7 +527,7 @@
 "subDamage" : 41,
 "subDef" : 54
 },
-{
+"lv34" : {
 "att" : 278,
 "cri" : 70,
 "criValue" : 0,
@@ -543,7 +543,7 @@
 "subDamage" : 42,
 "subDef" : 56
 },
-{
+"lv35" : {
 "att" : 284,
 "cri" : 71,
 "criValue" : 0,
@@ -559,7 +559,7 @@
 "subDamage" : 43,
 "subDef" : 57
 },
-{
+"lv36" : {
 "att" : 290,
 "cri" : 73,
 "criValue" : 0,
@@ -575,7 +575,7 @@
 "subDamage" : 44,
 "subDef" : 58
 },
-{
+"lv37" : {
 "att" : 296,
 "cri" : 74,
 "criValue" : 0,
@@ -591,7 +591,7 @@
 "subDamage" : 44,
 "subDef" : 59
 },
-{
+"lv38" : {
 "att" : 302,
 "cri" : 76,
 "criValue" : 0,
@@ -607,7 +607,7 @@
 "subDamage" : 45,
 "subDef" : 60
 },
-{
+"lv39" : {
 "att" : 308,
 "cri" : 77,
 "criValue" : 0,
@@ -623,7 +623,7 @@
 "subDamage" : 46,
 "subDef" : 62
 },
-{
+"lv40" : {
 "att" : 314,
 "cri" : 79,
 "criValue" : 0,
@@ -639,7 +639,7 @@
 "subDamage" : 47,
 "subDef" : 63
 },
-{
+"lv41" : {
 "att" : 320,
 "cri" : 80,
 "criValue" : 0,
@@ -655,7 +655,7 @@
 "subDamage" : 48,
 "subDef" : 64
 },
-{
+"lv42" : {
 "att" : 326,
 "cri" : 82,
 "criValue" : 0,
@@ -671,7 +671,7 @@
 "subDamage" : 49,
 "subDef" : 65
 },
-{
+"lv43" : {
 "att" : 332,
 "cri" : 83,
 "criValue" : 0,
@@ -687,7 +687,7 @@
 "subDamage" : 50,
 "subDef" : 66
 },
-{
+"lv44" : {
 "att" : 338,
 "cri" : 85,
 "criValue" : 0,
@@ -703,7 +703,7 @@
 "subDamage" : 51,
 "subDef" : 68
 },
-{
+"lv45" : {
 "att" : 344,
 "cri" : 86,
 "criValue" : 0,
@@ -719,7 +719,7 @@
 "subDamage" : 52,
 "subDef" : 69
 },
-{
+"lv46" : {
 "att" : 350,
 "cri" : 88,
 "criValue" : 0,
@@ -735,7 +735,7 @@
 "subDamage" : 53,
 "subDef" : 70
 },
-{
+"lv47" : {
 "att" : 356,
 "cri" : 89,
 "criValue" : 0,
@@ -751,7 +751,7 @@
 "subDamage" : 53,
 "subDef" : 71
 },
-{
+"lv48" : {
 "att" : 362,
 "cri" : 91,
 "criValue" : 0,
@@ -767,7 +767,7 @@
 "subDamage" : 54,
 "subDef" : 72
 },
-{
+"lv49" : {
 "att" : 368,
 "cri" : 92,
 "criValue" : 0,
@@ -783,7 +783,7 @@
 "subDamage" : 55,
 "subDef" : 74
 },
-{
+"lv50" : {
 "att" : 374,
 "cri" : 94,
 "criValue" : 0,
@@ -799,7 +799,7 @@
 "subDamage" : 56,
 "subDef" : 75
 },
-{
+"lv51" : {
 "att" : 380,
 "cri" : 95,
 "criValue" : 0,
@@ -815,7 +815,7 @@
 "subDamage" : 57,
 "subDef" : 76
 },
-{
+"lv52" : {
 "att" : 386,
 "cri" : 97,
 "criValue" : 0,
@@ -831,7 +831,7 @@
 "subDamage" : 58,
 "subDef" : 77
 },
-{
+"lv53" : {
 "att" : 392,
 "cri" : 98,
 "criValue" : 0,
@@ -847,7 +847,7 @@
 "subDamage" : 59,
 "subDef" : 78
 },
-{
+"lv54" : {
 "att" : 398,
 "cri" : 100,
 "criValue" : 0,
@@ -863,7 +863,7 @@
 "subDamage" : 60,
 "subDef" : 80
 },
-{
+"lv55" : {
 "att" : 404,
 "cri" : 101,
 "criValue" : 0,
@@ -879,7 +879,7 @@
 "subDamage" : 61,
 "subDef" : 81
 },
-{
+"lv56" : {
 "att" : 410,
 "cri" : 103,
 "criValue" : 0,
@@ -895,7 +895,7 @@
 "subDamage" : 62,
 "subDef" : 82
 },
-{
+"lv57" : {
 "att" : 416,
 "cri" : 104,
 "criValue" : 0,
@@ -911,7 +911,7 @@
 "subDamage" : 62,
 "subDef" : 83
 },
-{
+"lv58" : {
 "att" : 422,
 "cri" : 106,
 "criValue" : 0,
@@ -927,7 +927,7 @@
 "subDamage" : 63,
 "subDef" : 84
 },
-{
+"lv59" : {
 "att" : 428,
 "cri" : 107,
 "criValue" : 0,
@@ -943,7 +943,7 @@
 "subDamage" : 64,
 "subDef" : 86
 },
-{
+"lv60" : {
 "att" : 434,
 "cri" : 109,
 "criValue" : 0,
@@ -959,7 +959,7 @@
 "subDamage" : 65,
 "subDef" : 87
 },
-{
+"lv61" : {
 "att" : 440,
 "cri" : 110,
 "criValue" : 0,
@@ -975,7 +975,7 @@
 "subDamage" : 66,
 "subDef" : 88
 },
-{
+"lv62" : {
 "att" : 446,
 "cri" : 112,
 "criValue" : 0,
@@ -991,7 +991,7 @@
 "subDamage" : 67,
 "subDef" : 89
 },
-{
+"lv63" : {
 "att" : 452,
 "cri" : 113,
 "criValue" : 0,
@@ -1007,7 +1007,7 @@
 "subDamage" : 68,
 "subDef" : 90
 },
-{
+"lv64" : {
 "att" : 458,
 "cri" : 115,
 "criValue" : 0,
@@ -1023,7 +1023,7 @@
 "subDamage" : 69,
 "subDef" : 92
 },
-{
+"lv65" : {
 "att" : 464,
 "cri" : 116,
 "criValue" : 0,
@@ -1039,7 +1039,7 @@
 "subDamage" : 70,
 "subDef" : 93
 },
-{
+"lv66" : {
 "att" : 470,
 "cri" : 118,
 "criValue" : 0,
@@ -1055,7 +1055,7 @@
 "subDamage" : 71,
 "subDef" : 94
 },
-{
+"lv67" : {
 "att" : 476,
 "cri" : 119,
 "criValue" : 0,
@@ -1071,7 +1071,7 @@
 "subDamage" : 71,
 "subDef" : 95
 },
-{
+"lv68" : {
 "att" : 482,
 "cri" : 121,
 "criValue" : 0,
@@ -1087,7 +1087,7 @@
 "subDamage" : 72,
 "subDef" : 96
 },
-{
+"lv69" : {
 "att" : 488,
 "cri" : 122,
 "criValue" : 0,
@@ -1103,7 +1103,7 @@
 "subDamage" : 73,
 "subDef" : 98
 },
-{
+"lv70" : {
 "att" : 494,
 "cri" : 124,
 "criValue" : 0,
@@ -1119,7 +1119,7 @@
 "subDamage" : 74,
 "subDef" : 99
 },
-{
+"lv71" : {
 "att" : 500,
 "cri" : 125,
 "criValue" : 0,
@@ -1135,7 +1135,7 @@
 "subDamage" : 75,
 "subDef" : 100
 },
-{
+"lv72" : {
 "att" : 506,
 "cri" : 127,
 "criValue" : 0,
@@ -1151,7 +1151,7 @@
 "subDamage" : 76,
 "subDef" : 101
 },
-{
+"lv73" : {
 "att" : 512,
 "cri" : 128,
 "criValue" : 0,
@@ -1167,7 +1167,7 @@
 "subDamage" : 77,
 "subDef" : 102
 },
-{
+"lv74" : {
 "att" : 518,
 "cri" : 130,
 "criValue" : 0,
@@ -1183,7 +1183,7 @@
 "subDamage" : 78,
 "subDef" : 104
 },
-{
+"lv75" : {
 "att" : 524,
 "cri" : 131,
 "criValue" : 0,
@@ -1199,7 +1199,7 @@
 "subDamage" : 79,
 "subDef" : 105
 },
-{
+"lv76" : {
 "att" : 530,
 "cri" : 133,
 "criValue" : 0,
@@ -1215,7 +1215,7 @@
 "subDamage" : 80,
 "subDef" : 106
 },
-{
+"lv77" : {
 "att" : 536,
 "cri" : 134,
 "criValue" : 0,
@@ -1231,7 +1231,7 @@
 "subDamage" : 80,
 "subDef" : 107
 },
-{
+"lv78" : {
 "att" : 542,
 "cri" : 136,
 "criValue" : 0,
@@ -1247,7 +1247,7 @@
 "subDamage" : 81,
 "subDef" : 108
 },
-{
+"lv79" : {
 "att" : 548,
 "cri" : 137,
 "criValue" : 0,
@@ -1263,7 +1263,7 @@
 "subDamage" : 82,
 "subDef" : 110
 },
-{
+"lv80" : {
 "att" : 557,
 "cri" : 139,
 "criValue" : 0,
@@ -1279,7 +1279,7 @@
 "subDamage" : 84,
 "subDef" : 111
 },
-{
+"lv81" : {
 "att" : 566,
 "cri" : 142,
 "criValue" : 0,
@@ -1295,7 +1295,7 @@
 "subDamage" : 85,
 "subDef" : 113
 },
-{
+"lv82" : {
 "att" : 575,
 "cri" : 144,
 "criValue" : 0,
@@ -1311,7 +1311,7 @@
 "subDamage" : 86,
 "subDef" : 115
 },
-{
+"lv83" : {
 "att" : 584,
 "cri" : 146,
 "criValue" : 0,
@@ -1327,7 +1327,7 @@
 "subDamage" : 88,
 "subDef" : 117
 },
-{
+"lv84" : {
 "att" : 593,
 "cri" : 148,
 "criValue" : 0,
@@ -1343,7 +1343,7 @@
 "subDamage" : 89,
 "subDef" : 119
 },
-{
+"lv85" : {
 "att" : 602,
 "cri" : 151,
 "criValue" : 0,
@@ -1359,7 +1359,7 @@
 "subDamage" : 90,
 "subDef" : 120
 },
-{
+"lv86" : {
 "att" : 611,
 "cri" : 153,
 "criValue" : 0,
@@ -1375,7 +1375,7 @@
 "subDamage" : 92,
 "subDef" : 122
 },
-{
+"lv87" : {
 "att" : 620,
 "cri" : 155,
 "criValue" : 0,
@@ -1391,7 +1391,7 @@
 "subDamage" : 93,
 "subDef" : 124
 },
-{
+"lv88" : {
 "att" : 629,
 "cri" : 157,
 "criValue" : 0,
@@ -1407,7 +1407,7 @@
 "subDamage" : 94,
 "subDef" : 126
 },
-{
+"lv89" : {
 "att" : 638,
 "cri" : 160,
 "criValue" : 0,
@@ -1423,7 +1423,7 @@
 "subDamage" : 96,
 "subDef" : 128
 },
-{
+"lv90" : {
 "att" : 647,
 "cri" : 162,
 "criValue" : 0,
@@ -1439,7 +1439,7 @@
 "subDamage" : 97,
 "subDef" : 129
 },
-{
+"lv91" : {
 "att" : 656,
 "cri" : 164,
 "criValue" : 0,
@@ -1455,7 +1455,7 @@
 "subDamage" : 98,
 "subDef" : 131
 },
-{
+"lv92" : {
 "att" : 665,
 "cri" : 166,
 "criValue" : 0,
@@ -1471,7 +1471,7 @@
 "subDamage" : 100,
 "subDef" : 133
 },
-{
+"lv93" : {
 "att" : 674,
 "cri" : 169,
 "criValue" : 0,
@@ -1487,7 +1487,7 @@
 "subDamage" : 101,
 "subDef" : 135
 },
-{
+"lv94" : {
 "att" : 683,
 "cri" : 171,
 "criValue" : 0,
@@ -1503,7 +1503,7 @@
 "subDamage" : 102,
 "subDef" : 137
 },
-{
+"lv95" : {
 "att" : 692,
 "cri" : 173,
 "criValue" : 0,
@@ -1519,7 +1519,7 @@
 "subDamage" : 104,
 "subDef" : 138
 },
-{
+"lv96" : {
 "att" : 701,
 "cri" : 175,
 "criValue" : 0,
@@ -1535,7 +1535,7 @@
 "subDamage" : 105,
 "subDef" : 140
 },
-{
+"lv97" : {
 "att" : 710,
 "cri" : 178,
 "criValue" : 0,
@@ -1551,7 +1551,7 @@
 "subDamage" : 107,
 "subDef" : 142
 },
-{
+"lv98" : {
 "att" : 719,
 "cri" : 180,
 "criValue" : 0,
@@ -1567,7 +1567,7 @@
 "subDamage" : 108,
 "subDef" : 144
 },
-{
+"lv99" : {
 "att" : 728,
 "cri" : 182,
 "criValue" : 0,
@@ -1583,7 +1583,7 @@
 "subDamage" : 109,
 "subDef" : 146
 },
-{
+"lv100" : {
 "att" : 737,
 "cri" : 184,
 "criValue" : 0,
@@ -1599,4 +1599,4 @@
 "subDamage" : 111,
 "subDef" : 147
 }
-]
+}

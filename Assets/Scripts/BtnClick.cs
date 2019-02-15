@@ -32,7 +32,9 @@ public class BtnClick : MonoBehaviour {
         //     Debug.Log(item);
         // }
 
-
+		var cfglv = Config.CfgLevelUp;
+		var aa = cfglv[100];
+		Debug.Log(aa.exp);
 		// World w = World.GetInstance();
 		// Entity me = w.GetMe();
 		// me.ResetHp();
