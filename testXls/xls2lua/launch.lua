@@ -973,6 +973,30 @@ local function MarkCSharpFile(jsonFileName, datas, folder)
 	file:write('\t}\n')
 
 	file:write('}\n')
+
+	-- 写Config类
+	file:write('partial class Config\n{\n')
+	local classNamelower = string.lower(className)
+	file:write('\tstatic private '..className..' '..classNamelower..';\n')
+	-- 生成public变量名字 如 cfg_attr -> Cfg_Attr
+	local str = string.sub(classNamelower, 5)
+	str = str:gsub("^%l", string.upper)
+	local varName = 'Cfg_'..str
+
+	file:write('\tstatic public '..className..' '..varName..'\n')
+	file:write('\t{\n')
+	file:write('\t\tget\n\t\t{\n')
+	file:write('\t\t\tif ('..classNamelower..' == null)\n')
+	file:write('\t\t\t{\n')
+	file:write('\t\t\t\t'..classNamelower..' = ConfBase.GetConf<'..className..'>("'..classNamelower..'");\n')
+	file:write('\t\t\t\t'..classNamelower..'.Init();\n')
+	file:write('\t\t\t}\n')
+	file:write('\t\t\treturn '..classNamelower..';\n')
+	file:write('\t\t}\n')
+	file:write('\t\tset { }\n')
+	file:write('\t}\n')
+	file:write('}\n')
+
 	file:close()
 end
 

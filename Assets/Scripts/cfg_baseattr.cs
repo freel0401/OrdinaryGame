@@ -339,3 +339,20 @@ public class Cfg_baseattr : ConfBase
 		mapKeys[100] = 99;
 	}
 }
+partial class Config
+{
+	static private Cfg_baseattr cfg_baseattr;
+	static public Cfg_baseattr Cfg_Baseattr
+	{
+		get
+		{
+			if (cfg_baseattr == null)
+			{
+				cfg_baseattr = ConfBase.GetConf<Cfg_baseattr>("cfg_baseattr");
+				cfg_baseattr.Init();
+			}
+			return cfg_baseattr;
+		}
+		set { }
+	}
+}

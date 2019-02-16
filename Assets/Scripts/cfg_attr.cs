@@ -32,3 +32,20 @@ public class Cfg_attr : ConfBase
 		allcfgs[4] = speed;
 	}
 }
+partial class Config
+{
+	static private Cfg_attr cfg_attr;
+	static public Cfg_attr Cfg_Attr
+	{
+		get
+		{
+			if (cfg_attr == null)
+			{
+				cfg_attr = ConfBase.GetConf<Cfg_attr>("cfg_attr");
+				cfg_attr.Init();
+			}
+			return cfg_attr;
+		}
+		set { }
+	}
+}

@@ -327,3 +327,20 @@ public class Cfg_levelup : ConfBase
 		mapKeys[100] = 99;
 	}
 }
+partial class Config
+{
+	static private Cfg_levelup cfg_levelup;
+	static public Cfg_levelup Cfg_Levelup
+	{
+		get
+		{
+			if (cfg_levelup == null)
+			{
+				cfg_levelup = ConfBase.GetConf<Cfg_levelup>("cfg_levelup");
+				cfg_levelup.Init();
+			}
+			return cfg_levelup;
+		}
+		set { }
+	}
+}
