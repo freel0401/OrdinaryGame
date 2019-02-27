@@ -16,12 +16,12 @@ public class BtnClick : MonoBehaviour {
 
 	}
     public void showText(){
-		// Sql.ReadSqlFiles();
-		// string dbScriptsPath = "table.sql";
-        // var textFile = Resources.Load<TextAsset>(dbScriptsPath);
-		// string textFile = File.ReadAllText("Assets\\Resources\\"+dbScriptsPath);
-        // Debug.Log(textFile);
-		// var sql = Sql.GetInstance();
+
+		var sql = Sql.GetInstance();
+		// var data = sql.Select("player", new string[]{"*"}, new string[]{"id"}, new string[]{"="}, new string[]{"10001"});
+		var data = sql.Table("player").Select("*").ColName("id").Operation("=").ColValue("10001");
+		Debug.Log(data.HasRows);
+
 		// sql.CreateTable("test1", new string[]{ "pid", "name" }, new string[]{"int", "string"});
 		// sql.Insert("test1", new string[]{ "1", "'大王'"});
 		// sql.initDB();
@@ -32,9 +32,9 @@ public class BtnClick : MonoBehaviour {
         //     Debug.Log(item);
         // }
 
-		var cfglv = Config.Cfg_Levelup;
-		var aa = cfglv[100];
-		Debug.Log(aa.exp);
+		// var cfglv = Config.Cfg_Levelup;
+		// var aa = cfglv[100];
+		// Debug.Log(aa.exp);
 		// World w = World.GetInstance();
 		// Entity me = w.GetMe();
 		// me.ResetHp();

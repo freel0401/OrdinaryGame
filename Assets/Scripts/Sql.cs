@@ -27,28 +27,47 @@ public class Sql
     // 数据读取定义
     private SqliteDataReader dataReader;
 
-    private List<string> sqlStrings;
+    private string cacheTableName;
+    private List<string> cacheItems;
+    private List<string> cacheColNames;
+    private List<string> cacheOperations;
+    private List<string> cacheColValues;
 
+    // 生成数据库表的List缓存, 复用 使用前清理
+    private List<string> sqlStrings;
+    // 初始化字符串缓存, 省内存呀
+    private void initCache()
+    {
+        sqlStrings = new List<string>();
+        cacheItems = new List<string>();
+        cacheColNames = new List<string>();
+        cacheOperations = new List<string>();
+        cacheColValues = new List<string>();
+    }
+
+    // 数据库名 TODO 读取config
     private string sqlName = "orginarygame.db";
+
 
     private string getSqlPath()
     {
         string sqlFilePath;
 
         // #if UNITY_STANDALONE_WIN
-        #if UNITY_EDITOR
-            sqlFilePath = Application.dataPath + "/" + sqlName;
-        #else
+#if UNITY_EDITOR
+        sqlFilePath = Application.dataPath + "/" + sqlName;
+#else
             sqlFilePath = Application.persistentDataPath + "/" + sqlName;
         // #elif UNITY_EDITOR_OSX
         // #elif UNITY_ANDROID
         // #elif  UNITY_IOS
-        #endif
+#endif
         return sqlFilePath;
     }
     public Sql()
     {
-        sqlStrings = new List<string>();
+        initCache();
+
         string sqlFilePath = getSqlPath();
 
         bool needInit = File.Exists(sqlFilePath);
@@ -59,7 +78,7 @@ public class Sql
         dbConnection = new SqliteConnection("data source=" + sqlFilePath);
         //打开数据库
         dbConnection.Open();
-        if (needInit!=true)
+        if (needInit != true)
             initDB();
     }
 
@@ -130,12 +149,6 @@ public class Sql
     }
 
     /// 更新指定数据表内的数据
-    /// <returns>The values.</returns>
-    /// <param name="tableName">数据表名称</param>
-    /// <param name="colNames">字段名</param>
-    /// <param name="colValues">字段名对应的数据</param>
-    /// <param name="key">关键字</param>
-    /// <param name="value">关键字对应的值</param>
     public SqliteDataReader Update(string tableName, string[] colNames, string[] colValues, string key, string operation, string value)
     {
         //当字段名称和字段数值不对应时引发异常
@@ -158,7 +171,7 @@ public class Sql
             sqlStrings.Add(colNames[i]);
             sqlStrings.Add("=");
             sqlStrings.Add(colValues[i]);
-        //     queryString += ", " + colNames[i] + "=" + colValues[i];
+            //     queryString += ", " + colNames[i] + "=" + colValues[i];
         }
         sqlStrings.Add(" WHERE ");
         sqlStrings.Add(key);
@@ -169,13 +182,8 @@ public class Sql
         return ExecuteQuery(buildSql());
     }
 
-    /// <summary>
+
     /// 删除指定数据表内的数据
-    /// </summary>
-    /// <returns>The values.</returns>
-    /// <param name="tableName">数据表名称</param>
-    /// <param name="colNames">字段名</param>
-    /// <param name="colValues">字段名对应的数据</param>
     public SqliteDataReader DeleteValuesOR(string tableName, string[] colNames, string[] operations, string[] colValues)
     {
         //当字段名称和字段数值不对应时引发异常
@@ -192,13 +200,7 @@ public class Sql
         return ExecuteQuery(queryString);
     }
 
-    /// <summary>
     /// 删除指定数据表内的数据
-    /// </summary>
-    /// <returns>The values.</returns>
-    /// <param name="tableName">数据表名称</param>
-    /// <param name="colNames">字段名</param>
-    /// <param name="colValues">字段名对应的数据</param>
     public SqliteDataReader DeleteValuesAND(string tableName, string[] colNames, string[] operations, string[] colValues)
     {
         //当字段名称和字段数值不对应时引发异常
@@ -215,13 +217,6 @@ public class Sql
         return ExecuteQuery(queryString);
     }
 
-    /// <summary>
-    /// 创建数据表
-    /// </summary> +
-    /// <returns>The table.</returns>
-    /// <param name="tableName">数据表名</param>
-    /// <param name="colNames">字段名</param>
-    /// <param name="colTypes">字段名类型</param>
     public SqliteDataReader CreateTable(string tableName, string[] colNames, string[] colTypes)
     {
         string queryString = "CREATE TABLE " + tableName + "( " + colNames[0] + " " + colTypes[0];
@@ -233,22 +228,13 @@ public class Sql
         return ExecuteQuery(queryString);
     }
 
-    /// <summary>
-    /// Reads the table.
-    /// </summary>
-    /// <returns>The table.</returns>
-    /// <param name="tableName">Table name.</param>
-    /// <param name="items">Items.</param>
-    /// <param name="colNames">Col names.</param>
-    /// <param name="operations">Operations.</param>
-    /// <param name="colValues">Col values.</param>
-    public SqliteDataReader Select(string tableName, string[] items, string[] colNames, string[] operations, string[] colValues)
+    public SqliteDataReader ReadTable(string tableName, List<string> items, List<string> colNames, List<string> operations, List<string> colValues)
     {
         // string queryString = "SELECT " + items[0];
         sqlStrings.Clear();
         sqlStrings.Add("SELECT ");
         sqlStrings.Add(items[0]);
-        for (int i = 1; i < items.Length; i++)
+        for (int i = 1; i < items.Count; i++)
         {
             // queryString += ", " + items[i];
             sqlStrings.Add(", ");
@@ -263,7 +249,7 @@ public class Sql
         sqlStrings.Add(" ");
         sqlStrings.Add(colValues[0]);
         // queryString += " FROM " + tableName + " WHERE " + colNames[0] + " " + operations[0] + " " + colValues[0];
-        for (int i = 0; i < colNames.Length; i++)
+        for (int i = 0; i < colNames.Count; i++)
         {
             // queryString += " AND " + colNames[i] + " " + operations[i] + " " + colValues[0] + " ";
             sqlStrings.Add(" AND ");
@@ -277,13 +263,79 @@ public class Sql
         return ExecuteQuery(buildSql());
     }
 
+    public Sql Table(string tableName)
+    {
+        this.cacheTableName = tableName;
+        return this;
+    }
+
+    public Sql Select(string item)//, string[] items, string[] colNames, string[] operations, string[] colValues)
+    {
+        this.cacheItems.Add(item);
+        return this;
+    }
+
+    public Sql Select(string[] items)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            this.cacheItems.Add(items[i]);
+        }
+        return this;
+    }
+
+    public Sql ColName(string colName)
+    {
+        this.cacheColNames.Add(colName);
+        return this;
+    }
+
+    public Sql ColName(string[] colNames)
+    {
+         for (int i = 0; i < colNames.Length; i++)
+        {
+            this.cacheColNames.Add(colNames[i]);
+        }
+        return this;
+    }
+
+    public Sql Operation(string opt)
+    {
+        this.cacheOperations.Add(opt);
+        return this;
+    }
+
+    public Sql Operation(string[] opts)
+    {
+        for (int i = 0; i < opts.Length; i++)
+        {
+            this.cacheOperations.Add(opts[i]);
+        }
+        return this;
+    }
+
+    public SqliteDataReader ColValue(string colValue)
+    {
+        this.cacheColValues.Add(colValue);
+        return ReadTable(this.cacheTableName, this.cacheItems, this.cacheColNames, this.cacheOperations, this.cacheColValues);
+    }
+
+    public SqliteDataReader ColValue(string[] colValues)
+    {
+         for (int i = 0; i < colValues.Length; i++)
+        {
+            this.cacheColValues.Add(colValues[i]);
+        }
+        return ReadTable(this.cacheTableName, this.cacheItems, this.cacheColNames, this.cacheOperations, this.cacheColValues);
+    }
+
     //-----------------工具 构造sql查询字符串
     private StringBuilder stringBuilder;
     private string buildSql()
     {
         if (stringBuilder == null)
         {
-            stringBuilder  = new StringBuilder();
+            stringBuilder = new StringBuilder();
         }
         else
         {
@@ -300,9 +352,7 @@ public class Sql
     public void initDB()
     {
         string dbScriptsPath = "table.sql";
-        // var textFile = Resources.Load<TextAsset>(dbScriptsPath);
-		string textFile = File.ReadAllText("Assets\\Resources\\"+dbScriptsPath);
-        Debug.Log(textFile);
+        string textFile = File.ReadAllText("Assets\\Resources\\" + dbScriptsPath);
         ExecuteQuery(textFile);
     }
 
