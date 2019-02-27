@@ -36,13 +36,22 @@ public class Sql
     // 生成数据库表的List缓存, 复用 使用前清理
     private List<string> sqlStrings;
     // 初始化字符串缓存, 省内存呀
-    private void initCache()
+    private void initCaches()
     {
         sqlStrings = new List<string>();
         cacheItems = new List<string>();
         cacheColNames = new List<string>();
         cacheOperations = new List<string>();
         cacheColValues = new List<string>();
+    }
+
+    private void clearCaches()
+    {
+        sqlStrings.Clear();
+        cacheItems.Clear();
+        cacheColNames.Clear();
+        cacheOperations.Clear();
+        cacheColValues.Clear();
     }
 
     // 数据库名 TODO 读取config
@@ -66,7 +75,7 @@ public class Sql
     }
     public Sql()
     {
-        initCache();
+        initCaches();
 
         string sqlFilePath = getSqlPath();
 
@@ -292,7 +301,7 @@ public class Sql
 
     public Sql ColName(string[] colNames)
     {
-         for (int i = 0; i < colNames.Length; i++)
+        for (int i = 0; i < colNames.Length; i++)
         {
             this.cacheColNames.Add(colNames[i]);
         }
@@ -317,16 +326,20 @@ public class Sql
     public SqliteDataReader ColValue(string colValue)
     {
         this.cacheColValues.Add(colValue);
-        return ReadTable(this.cacheTableName, this.cacheItems, this.cacheColNames, this.cacheOperations, this.cacheColValues);
+        SqliteDataReader results = ReadTable(this.cacheTableName, this.cacheItems, this.cacheColNames, this.cacheOperations, this.cacheColValues);
+        clearCaches();
+        return results;
     }
 
     public SqliteDataReader ColValue(string[] colValues)
     {
-         for (int i = 0; i < colValues.Length; i++)
+        for (int i = 0; i < colValues.Length; i++)
         {
             this.cacheColValues.Add(colValues[i]);
         }
-        return ReadTable(this.cacheTableName, this.cacheItems, this.cacheColNames, this.cacheOperations, this.cacheColValues);
+        SqliteDataReader results = ReadTable(this.cacheTableName, this.cacheItems, this.cacheColNames, this.cacheOperations, this.cacheColValues);
+        clearCaches();
+        return results;
     }
 
     //-----------------工具 构造sql查询字符串
