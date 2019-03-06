@@ -11,9 +11,9 @@ public class World : MonoSingleton<World>
     void Start()
     {
         entityList = new Dictionary<int, Entity>();
-        me = new Entity(EntityType.ROLE);
+        me = new Entity(EntityType.ROLE, true);
         me.Guid = Global.GetGuid();
-        me.IsMe = true;
+        // me.IsMe = true;
         me.Name = "主角";
         AddEntity(me);
     }

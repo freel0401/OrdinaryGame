@@ -366,6 +366,7 @@ public class Sql
     {
         string dbScriptsPath = "table.sql";
         string textFile = File.ReadAllText("Assets\\Resources\\" + dbScriptsPath);
+        Debug.Log(textFile);
         ExecuteQuery(textFile);
     }
 

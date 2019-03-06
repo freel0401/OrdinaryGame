@@ -19,9 +19,9 @@ public class BtnClick : MonoBehaviour {
 
 		var sql = Sql.GetInstance();
 		// var data = sql.Select("player", new string[]{"*"}, new string[]{"id"}, new string[]{"="}, new string[]{"10001"});
-		var data = sql.Table("player").Select("*").ColName("id").Operation("=").ColValue("10001");
-		Debug.Log(data.HasRows);
-
+		// var data = sql.Table("player").Select("*").ColName("id").Operation("=").ColValue("10001");
+		// Debug.Log(data.HasRows);
+		sql.Insert("item", new string[]{"null", "1", "1", "1", "1"});
 		// sql.CreateTable("test1", new string[]{ "pid", "name" }, new string[]{"int", "string"});
 		// sql.Insert("test1", new string[]{ "1", "'大王'"});
 		// sql.initDB();

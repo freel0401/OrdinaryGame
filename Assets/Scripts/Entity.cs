@@ -16,7 +16,7 @@ public class Entity
     // protected AttrSys attrs = new AttrSys();
     protected int[] attrs;
 
-    bool isMe = false;
+    private bool isMe = false;
 
     public bool IsMe
     {
@@ -45,9 +45,11 @@ public class Entity
         return entityType==EntityType.MONSTER;
     }
 
-    public Entity(EntityType type)
+    public Entity(EntityType type, bool isme = false)
     {
         entityType = type;
+        if (isme)
+            isMe = true;
         guid = Global.GetGuid();
         InitAttr();
         setInfo();
